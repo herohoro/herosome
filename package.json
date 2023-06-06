@@ -11,7 +11,7 @@
     "lint": "eslint './**/*.{ts,tsx}'"
   },
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
   "author": "",
   "license": "ISC",
@@ -57,7 +57,7 @@
     "@types/file-saver": "^2.0.1",
     "@types/gtag.js": "^0.0.4",
     "@types/node": "^14.0.6",
-    "@types/react": "^17.0.60",
+    "@types/react": "^18.2.8",
     "@types/react-dom": "^17.0.2",
     "@types/rss": "^0.0.28",
     "@types/styled-components": "^5.1.7",
