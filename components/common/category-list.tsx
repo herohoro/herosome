@@ -9,9 +9,7 @@ export const CategoryList = () => {
       <ul className="category-nav">
         {blogConfig.categories.map((category) => (
           <li key={category.id} className="category-item">
-            <Link href={`/${category.id}`}>
-              <a href={`/${category.id}`}>{category.title}</a>
-            </Link>
+            <Link href={`/${category.id}`}>{category.title}</Link>
           </li>
         ))}
       </ul>

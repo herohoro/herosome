@@ -14,9 +14,7 @@ export const TopicPath: React.VFC<Props> = ({ items }) => {
     <ul className="topic-path">
       <li>
         <Link href="/">
-          <a href="/">
-            <span>Home</span>
-          </a>
+          <span>Home</span>
         </Link>
       </li>
       {items.map((item) => (

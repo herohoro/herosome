@@ -41,18 +41,16 @@ export const LatestArticle: React.FC = ({ children }) => {
 
 export const ArticleLink: React.FC<{ href: string }> = ({ href, children }) => {
   return (
-    <Link href={href}>
-      <a className="article-link" href={href}>
-        {children}
-        <style jsx>
-          {`
-            .article-link {
-              display: block;
-              width: 100%;
-            }
-          `}
-        </style>
-      </a>
+    <Link href={href} className="article-link">
+      {children}
+      <style jsx>
+        {`
+          .article-link {
+            display: block;
+            width: 100%;
+          }
+        `}
+      </style>
     </Link>
   );
 };

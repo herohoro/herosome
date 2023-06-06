@@ -13,14 +13,12 @@ export const Header: React.VFC = () => {
           </div>
           <div className="logo-wrap">
             <Link href="/">
-              <a href="/">
-                <Image
-                  src={blogConfig.siteLogo.url}
-                  alt={blogConfig.siteName}
-                  width={blogConfig.siteLogo.width}
-                  height={blogConfig.siteLogo.height}
-                />
-              </a>
+              <Image
+                src={blogConfig.siteLogo.url}
+                alt={blogConfig.siteName}
+                width={blogConfig.siteLogo.width}
+                height={blogConfig.siteLogo.height}
+              />
             </Link>
           </div>
           {blogConfig.subNavigation.length > 0 && (
