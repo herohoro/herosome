@@ -8,7 +8,7 @@ export const LinkButton: React.FC<{ href: string }> = ({ href, children }) => {
       </Link>
       <style jsx>
         {`
-          .link-button {
+          :global(.link-button) {
             text-transform: uppercase;
             border-radius: 20px;
             padding: 12px 50px;

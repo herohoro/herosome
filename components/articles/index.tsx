@@ -41,7 +41,7 @@ export const LatestArticle: React.FC = ({ children }) => {
 
 export const ArticleLink: React.FC<{ href: string }> = ({ href, children }) => {
   return (
-    <Link href={href} className="article-link">
+    <div>
       {children}
       <style jsx>
         {`
@@ -51,7 +51,7 @@ export const ArticleLink: React.FC<{ href: string }> = ({ href, children }) => {
           }
         `}
       </style>
-    </Link>
+    </div>
   );
 };
 

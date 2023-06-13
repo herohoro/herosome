@@ -21,9 +21,7 @@ export const TopicPath: React.VFC<Props> = ({ items }) => {
         <li key={item.label}>
           {item.link && (
             <Link href={item.link} key={item.link}>
-              <a href={item.link}>
-                <span>{item.label}</span>
-              </a>
+              <span>{item.label}</span>
             </Link>
           )}
           {!item.link && <span>{item.label}</span>}
@@ -60,7 +58,7 @@ export const TopicPath: React.VFC<Props> = ({ items }) => {
           .topic-path li:first-child {
             margin-left: 0;
           }
-          .topic-path a {
+          .topic-path :global(a) {
             color: var(--link);
           }
         `}

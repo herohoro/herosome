@@ -25,9 +25,7 @@ export const Header: React.VFC = () => {
             <ul className="header-sub-nav">
               {blogConfig.subNavigation.map((n) => (
                 <li key={n.url}>
-                  <Link href={n.url}>
-                    <a href={n.url}>{n.name}</a>
-                  </Link>
+                  <Link href={n.url}>{n.name}</Link>
                 </li>
               ))}
             </ul>
@@ -35,9 +33,7 @@ export const Header: React.VFC = () => {
           <ul className="header-nav">
             {blogConfig.navigation.map((n) => (
               <li key={n.url}>
-                <Link href={n.url}>
-                  <a href={n.url}>{n.name}</a>
-                </Link>
+                <Link href={n.url}>{n.name}</Link>
               </li>
             ))}
           </ul>

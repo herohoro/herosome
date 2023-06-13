@@ -51,7 +51,7 @@ const _PagerLink: React.FC<{ href: string }> = ({ children, href }) => {
       {children}
       <style jsx>
         {`
-          .link {
+          :global(.link) {
             color: var(--c-primary);
             border: 1px solid var(--c-primary);
             width: 30px;
