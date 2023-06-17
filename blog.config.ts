@@ -7,10 +7,10 @@ const blogConfig: BlogConfig = {
     width: 201,
     height: 39,
   },
-  siteName: "AWESOME",
+  siteName: "HERO",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
-  title: "AWESOME",
-  description: "AWESOME Next.js TypeScript MDX Blog Theme",
+  title: "HERO",
+  description: "好きなこと・キレイなことをとことん集めて強くなるための勉強記録",
   googleAnalyticsCode: "", // G-**********
   googleAdsenseCode: "", // ca-pub-****************
   notFoundPage: {
@@ -49,9 +49,9 @@ const blogConfig: BlogConfig = {
   styles: {
     containerMaxWidth: "1280px",
     colors: {
-      primary: "#50C0A1",
+      primary: "#ff8e8e",
       primaryLighter: "#EFF7F3",
-      primaryGradient: "linear-gradient(to right, #06A9B7, #B0DE87)",
+      primaryGradient: "linear-gradient(to right, #d9797b, #ffb461)",
       base: "#F2F4F3",
       border: "",
       bg: "#F7F7F7",
@@ -66,12 +66,12 @@ const blogConfig: BlogConfig = {
     },
   },
   hero: {
-    title: "My awesome life",
+    title: "herohoro pace",
     image: "/images/plane.jpeg",
-    description: "AWESOME Next.js TypeScript MDX Blog Theme",
+    description: "like this !!",
   },
   footer: {
-    title: "AWESOME Next.js TypeScript MDX Blog Theme",
+    title: "powered by AWESOME",
   },
   article: {
     defaultThumbnail: "/images/plane.jpeg",
@@ -102,20 +102,22 @@ const blogConfig: BlogConfig = {
     },
   ],
   account: {
-    name: "steelydylan",
-    description: "profile here profile here profile here profile here",
-    image: `/images/me.jpeg`,
+    name: "horomi",
+    description:
+      "Notionサポーターで活動してるけど、独学が生きがいな引きこもりさん",
+    image: `/images/profile_500x500.PNG`,
     social: {
-      twitter: "https://twitter.com/steelydylan",
-      github: "https://github.com/steelydylan",
+      twitter: "https://twitter.com/mineral_30",
+      github: "https://github.com/herohoro",
     },
   },
   writers: [
     {
-      id: "awesome",
-      name: "Mr. AWESOME",
-      description: "profile here profile here profile here profile here",
-      image: "/images/me.jpeg",
+      id: "horomi",
+      name: "horomi",
+      description:
+        "Notionサポーターで活動してるけど、独学が生きがいな引きこもりさん",
+      image: "/images/profile_500x500.PNG",
     },
     {
       id: "steelydylan",
