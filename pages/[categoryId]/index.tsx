@@ -15,6 +15,7 @@ import { CategoryHero } from "@/components/common/category-hero";
 import { Wrapper } from "@/components/common/wrapper";
 import { LinkButton } from "@/components/buttons";
 import { useArticles } from "@/hooks/use-articles";
+import { NotFound } from "@/components/common/not-found";
 
 type Props = {
   category: Category;
@@ -24,6 +25,11 @@ type Props = {
 
 const CategoryIndex: NextPage<Props> = (props) => {
   const { category, articles: defaultArticles, max } = props;
+
+  if (!defaultArticles || defaultArticles.length === 0) {
+    return <NotFound />;
+  }
+
   const { articles } = useArticles({
     defaultArticles,
     current: 0,
@@ -88,44 +94,36 @@ export const getStaticPaths: GetStaticPaths = async () => {
       categoryId: id,
     },
   }));
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { categoryId } = params;
   const category = blogConfig.categories.find((c) => c.id === categoryId);
-  try {
-    const articles = await getArticles();
-    const filteredPosts = articles.filter(({ data }) => {
-      return data.category === categoryId;
+  const articles = await getArticles();
+  const filteredPosts = articles.filter(({ data }) => {
+    return data.category === categoryId;
+  });
+
+  const slicedPosts = filteredPosts
+    .slice(0, blogConfig.article.articlesPerPage)
+    .map((p) => {
+      const { content, ...others } = p;
+      return others;
+    })
+    .sort((articleA, articleB) => {
+      if (articleA.data.date > articleB.data.date) {
+        return -1;
+      }
+      return 1;
     });
 
-    const slicedPosts = filteredPosts
-      .slice(0, blogConfig.article.articlesPerPage)
-      .map((p) => {
-        const { content, ...others } = p;
-        return others;
-      })
-      .sort((articleA, articleB) => {
-        if (articleA.data.date > articleB.data.date) {
-          return -1;
-        }
-        return 1;
-      });
-
-    return {
-      revalidate: 60,
-      props: {
-        category,
-        max: Math.ceil(
-          filteredPosts.length / blogConfig.article.articlesPerPage
-        ),
-        articles: slicedPosts,
-      },
-    };
-  } catch (e) {
-    return {
-      notFound: true,
-    };
-  }
+  return {
+    revalidate: 60,
+    props: {
+      category,
+      max: Math.ceil(filteredPosts.length / blogConfig.article.articlesPerPage),
+      articles: slicedPosts,
+    },
+  };
 };

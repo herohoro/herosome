@@ -18,6 +18,7 @@ import { TagList } from "@/components/common/tag-list";
 import { getCategory } from "@/components/utils/get-category";
 import { getTagList } from "@/components/utils/get-tag-list";
 import { useArticle } from "@/hooks/use-article";
+import { NotFound } from "@/components/common/not-found";
 
 type DetailProps = {
   article: Article;
@@ -26,6 +27,10 @@ type DetailProps = {
 };
 
 export default ({ article: defaultArticle, related }: DetailProps) => {
+  if (!defaultArticle) {
+    return <NotFound />;
+  }
+
   const { article } = useArticle(defaultArticle.slug, defaultArticle);
   const jsonLd: ArticleJsonLdProps = {
     url: process.env.NEXT_PUBLIC_SITE_URL,
@@ -124,31 +129,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
         },
       };
     });
-  return { paths, fallback: "blocking" };
+  return { paths, fallback: true };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug, categoryId } = params;
-  try {
-    const category = blogConfig.categories.find((cat) => cat.id === categoryId);
-    const { article, related } = await getArticle(slug as string);
+  const category = blogConfig.categories.find((cat) => cat.id === categoryId);
+  const { article, related } = await getArticle(slug as string);
 
-    return {
-      revalidate: 60,
-      props: {
-        article,
-        related,
-        category,
-      },
-    };
-  } catch (e) {
-    return {
-      revalidate: 60,
-      props: {
-        content: "Not Found",
-        data: {},
-        errorCode: 404,
-      },
-    };
-  }
+  return {
+    revalidate: 60,
+    props: {
+      article,
+      related,
+      category,
+    },
+  };
 };

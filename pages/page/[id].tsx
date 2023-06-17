@@ -15,6 +15,7 @@ import { Side } from "@/components/layouts/side";
 import { Wrapper } from "@/components/common/wrapper";
 import { Main } from "@/components/layouts/main";
 import { useArticles } from "@/hooks/use-articles";
+import { NotFound } from "@/components/common/not-found";
 
 const PageDetail = ({
   articles: defaultArticles,
@@ -25,6 +26,10 @@ const PageDetail = ({
   current: number;
   max: number;
 }) => {
+  if (!defaultArticles || defaultArticles.length === 0) {
+    return <NotFound />;
+  }
+
   const { articles } = useArticles({ defaultArticles, current });
 
   return (
@@ -61,12 +66,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
     if ((index + 1) % blogConfig.article.articlesPerPage === 0) {
       paths.push({
         params: {
-          id: `${(index + 1) / blogConfig.article.articlesPerPage + 1}`,
+          id: `${(index + 1) / blogConfig.article.articlesPerPage}`,
         },
       });
     }
   });
-  return { paths, fallback: "blocking" };
+  return { paths, fallback: true };
 };
 
 export const getStaticProps = async ({ params }) => {

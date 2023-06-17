@@ -15,6 +15,7 @@ import { CategoryHero } from "@/components/common/category-hero";
 import { Wrapper } from "@/components/common/wrapper";
 import { Pager } from "@/components/pager";
 import { useArticles } from "@/hooks/use-articles";
+import { NotFound } from "@/components/common/not-found";
 
 type Props = {
   category: Category;
@@ -25,6 +26,11 @@ type Props = {
 
 const CategoryDeteil: NextPage<Props> = (props) => {
   const { category, articles: defaultArticles, current, max } = props;
+
+  if (!defaultArticles || defaultArticles.length === 0) {
+    return <NotFound />;
+  }
+
   const { articles } = useArticles({
     defaultArticles,
     current,
@@ -81,54 +87,43 @@ export const getStaticPaths: GetStaticPaths = async () => {
       });
     }
   });
-  return { paths, fallback: "blocking" };
+  return { paths, fallback: true };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { categoryId, id } = params;
   const category = blogConfig.categories.find((c) => c.id === categoryId);
   const current = parseInt(id as string, 10) - 1;
-  try {
-    const articles = await getArticles();
-    const filteredPosts = articles
-      .filter(({ data }) => {
-        return data.category === categoryId;
-      })
-      .sort((articleA, articleB) => {
-        if (articleA.data.date > articleB.data.date) {
-          return -1;
-        }
-        return 1;
-      });
+  const articles = await getArticles();
+  const filteredPosts = articles
+    .filter(({ data }) => {
+      return data.category === categoryId;
+    })
+    .sort((articleA, articleB) => {
+      if (articleA.data.date > articleB.data.date) {
+        return -1;
+      }
+      return 1;
+    });
 
-    const slicedPosts = filteredPosts
-      .slice(
-        current * blogConfig.article.articlesPerPage,
-        current * blogConfig.article.articlesPerPage +
-          blogConfig.article.articlesPerPage
-      )
-      .map((p) => {
-        const { content, ...others } = p;
-        return others;
-      });
+  const slicedPosts = filteredPosts
+    .slice(
+      current * blogConfig.article.articlesPerPage,
+      current * blogConfig.article.articlesPerPage +
+        blogConfig.article.articlesPerPage
+    )
+    .map((p) => {
+      const { content, ...others } = p;
+      return others;
+    });
 
-    return {
-      revalidate: 60,
-      props: {
-        current: current + 1,
-        max: Math.ceil(
-          filteredPosts.length / blogConfig.article.articlesPerPage
-        ),
-        category,
-        articles: slicedPosts,
-      },
-    };
-  } catch (e) {
-    return {
-      revalidate: 60,
-      props: {
-        notFound: true,
-      },
-    };
-  }
+  return {
+    revalidate: 60,
+    props: {
+      current: current + 1,
+      max: Math.ceil(filteredPosts.length / blogConfig.article.articlesPerPage),
+      category,
+      articles: slicedPosts,
+    },
+  };
 };
