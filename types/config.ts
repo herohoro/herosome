@@ -91,7 +91,7 @@ interface List {
 
 interface Share {
   title: string;
-  socials: ("twitter" | "facebook" | "hatebu")[];
+  socials: ("twitter" | "facebook" | "hatebu" | "instagram")[];
 }
 
 interface Sidebar {
