@@ -84,7 +84,7 @@ const blogConfig: BlogConfig = {
     },
     {
       name: "Rie",
-      url: `/Rie`,
+      url: `/rie`,
     },
   ],
   subNavigation: [
