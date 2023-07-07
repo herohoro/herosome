@@ -2,6 +2,7 @@ interface Social {
   twitter?: string;
   github?: string;
   facebook?: string;
+  instagram?: string;
 }
 
 interface Account {
