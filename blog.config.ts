@@ -40,7 +40,7 @@ const blogConfig: BlogConfig = {
     },
     share: {
       title: "Share",
-      socials: ["twitter", "facebook"],
+      socials: ["twitter", "facebook", "instagram"],
     },
     fixedSidebar: {
       ad: "",
@@ -66,7 +66,7 @@ const blogConfig: BlogConfig = {
     },
   },
   hero: {
-    title: "herohoro pace",
+    title: "Potential ? ME : ME ;",
     image: "/images/plane.jpeg",
     description: "like this !!",
   },
@@ -79,12 +79,12 @@ const blogConfig: BlogConfig = {
   },
   navigation: [
     {
-      name: "travel",
-      url: `/travel`,
+      name: "horomi",
+      url: `/horomi`,
     },
     {
-      name: "camp",
-      url: `/camp`,
+      name: "Rie",
+      url: `/Rie`,
     },
   ],
   subNavigation: [
@@ -102,12 +102,13 @@ const blogConfig: BlogConfig = {
     },
   ],
   account: {
-    name: "horomi",
+    name: "horomi & Rie",
     description:
-      "Notionサポーターで活動してるけど、独学が生きがいな引きこもりさん",
-    image: `/images/profile_500x500.PNG`,
+      "Notionサポーターで活動してたら、ちょっと好きなことを探したくなった２人",
+    image: `/images/horo-rie_profile.png`,
     social: {
-      twitter: "https://twitter.com/mineral_30",
+      twitter: "https://twitter.com/RieTamura36",
+      instagram: "https://www.instagram.com/notionsupporter/",
       github: "https://github.com/herohoro",
     },
   },
@@ -128,22 +129,28 @@ const blogConfig: BlogConfig = {
   ],
   categories: [
     {
+      id: "horomi",
+      title: "horomi",
+      imagePath: "/images/cuba.jpeg",
+      description: "Look at my awesome horomi life",
+    },
+    {
+      id: "rie",
+      title: "Rie",
+      imagePath: "/images/camp.jpeg",
+      description: "Look at my awesome Rie life",
+    },
+    {
       id: "about",
       title: "About",
-      imagePath: "/images/camp.jpeg",
+      imagePath: "/images/sky.jpeg",
       description: "",
     },
     {
-      id: "camp",
-      title: "Camp",
-      imagePath: "/images/camp.jpeg",
-      description: "Look at my awesome camp life",
-    },
-    {
-      id: "travel",
-      title: "Travel",
-      imagePath: "/images/london.jpeg",
-      description: "Look at my awesome travel life",
+      id: "sample",
+      title: "Sample",
+      imagePath: "/images/alaska.jpeg",
+      description: "Look at our awesome's sample ",
     },
   ],
   tags: [

@@ -2,6 +2,7 @@ interface Social {
   twitter?: string;
   github?: string;
   facebook?: string;
+  instagram?: string;
 }
 
 interface Account {
@@ -90,7 +91,7 @@ interface List {
 
 interface Share {
   title: string;
-  socials: ("twitter" | "facebook" | "hatebu")[];
+  socials: ("twitter" | "facebook" | "hatebu" | "instagram")[];
 }
 
 interface Sidebar {
