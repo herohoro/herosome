@@ -86,6 +86,10 @@ const blogConfig: BlogConfig = {
       name: "Rie",
       url: `/rie`,
     },
+    {
+      name: "Yoom",
+      url: `/yoom`,
+    },
   ],
   subNavigation: [
     {
@@ -139,6 +143,12 @@ const blogConfig: BlogConfig = {
       title: "Rie",
       imagePath: "/images/camp.jpeg",
       description: "Look at my awesome Rie life",
+    },
+    {
+      id: "yoom",
+      title: "Yoom",
+      imagePath: "/images/paraglider.jpg",
+      description: "Look at my awesome Yoom magic !!!!",
     },
     {
       id: "about",
