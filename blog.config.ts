@@ -166,12 +166,12 @@ const blogConfig: BlogConfig = {
       imagePath: "/images/sky.jpeg",
       description: "",
     },
-    // {
-    //   id: "sample",
-    //   title: "Sample",
-    //   imagePath: "/images/alaska.jpeg",
-    //   description: "Look at our awesome's sample ",
-    // },
+    {
+      id: "sample",
+      title: "Sample",
+      imagePath: "/images/alaska.jpeg",
+      description: "Look at our awesome's sample ",
+    },
   ],
   tags: [
     {
