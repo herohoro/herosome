@@ -30,6 +30,7 @@ type Props = {
 };
 
 export function ArticleCard({ article, className, href }: Props) {
+  console.log({article})
   return (
     <div className={className}>
       <div className="article-img-wrap">
@@ -51,6 +52,7 @@ export function ArticleCard({ article, className, href }: Props) {
           <Link href={href}>{article.title}</Link>
         </h2>
         <PublishdAt date={article.date} />
+        <p>{article.description}</p>
       </div>
       <style jsx>
         {`
