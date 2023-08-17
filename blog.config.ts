@@ -160,12 +160,12 @@ const blogConfig: BlogConfig = {
       imagePath: "/images/cuba.jpeg",
       description: "Look at my awesome horomi life",
     },
-    // {
-    //   id: "about",
-    //   title: "About",
-    //   imagePath: "/images/sky.jpeg",
-    //   description: "",
-    // },
+    {
+      id: "about",
+      title: "About",
+      imagePath: "/images/sky.jpeg",
+      description: "",
+    },
     // {
     //   id: "sample",
     //   title: "Sample",
