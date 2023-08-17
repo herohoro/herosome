@@ -12,8 +12,8 @@ export const Side: React.VFC<{ id?: string }> = ({ id }) => {
       <div className="category-list-wrap">
         <CategoryList />
       </div>
-      <SubTitle>{blogConfig.widgets.tagList.title}</SubTitle>
-      <TagList tags={blogConfig.tags} />
+      {/* <SubTitle>{blogConfig.widgets.tagList.title}</SubTitle>
+      <TagList tags={blogConfig.tags} /> */}
       <div className="fixed-sidebar">
         {id && <Toc id={id} />}
         <div
