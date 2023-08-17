@@ -79,16 +79,20 @@ const blogConfig: BlogConfig = {
   },
   navigation: [
     {
-      name: "horomi",
-      url: `/horomi`,
+      name: "Yoom",
+      url: `/yoom`,
+    },
+    {
+      name: "ヲタけん",
+      url: `/wotaken`,
     },
     {
       name: "Rie",
       url: `/rie`,
     },
     {
-      name: "Yoom",
-      url: `/yoom`,
+      name: "horomi",
+      url: `/horomi`,
     },
   ],
   subNavigation: [
@@ -111,9 +115,9 @@ const blogConfig: BlogConfig = {
       "Notionサポーターで活動してたら、ちょっと好きなことを探したくなった２人",
     image: `/images/horo-rie_profile.png`,
     social: {
-      twitter: "https://twitter.com/RieTamura36",
-      instagram: "https://www.instagram.com/notionsupporter/",
-      github: "https://github.com/herohoro",
+      twitter: "https://twitter.com/otaneshikenkyu",
+      instagram: "https://www.instagram.com/otameshikenkyu",
+      github: "https://github.com/herohoro/herosome",
     },
   },
   writers: [
@@ -133,10 +137,16 @@ const blogConfig: BlogConfig = {
   ],
   categories: [
     {
-      id: "horomi",
-      title: "horomi",
-      imagePath: "/images/cuba.jpeg",
-      description: "Look at my awesome horomi life",
+      id: "yoom",
+      title: "Yoom",
+      imagePath: "/images/paraglider.jpg",
+      description: "Look at my awesome Yoom magic !!!!",
+    },
+    {
+      id: "wotaken",
+      title: "ヲタけん",
+      imagePath: "/images/black.cat.jpg",
+      description: "Look at my awesome ヲタ magic !!!!",
     },
     {
       id: "rie",
@@ -145,23 +155,23 @@ const blogConfig: BlogConfig = {
       description: "Look at my awesome Rie life",
     },
     {
-      id: "yoom",
-      title: "Yoom",
-      imagePath: "/images/paraglider.jpg",
-      description: "Look at my awesome Yoom magic !!!!",
+      id: "horomi",
+      title: "horomi",
+      imagePath: "/images/cuba.jpeg",
+      description: "Look at my awesome horomi life",
     },
-    {
-      id: "about",
-      title: "About",
-      imagePath: "/images/sky.jpeg",
-      description: "",
-    },
-    {
-      id: "sample",
-      title: "Sample",
-      imagePath: "/images/alaska.jpeg",
-      description: "Look at our awesome's sample ",
-    },
+    // {
+    //   id: "about",
+    //   title: "About",
+    //   imagePath: "/images/sky.jpeg",
+    //   description: "",
+    // },
+    // {
+    //   id: "sample",
+    //   title: "Sample",
+    //   imagePath: "/images/alaska.jpeg",
+    //   description: "Look at our awesome's sample ",
+    // },
   ],
   tags: [
     {
