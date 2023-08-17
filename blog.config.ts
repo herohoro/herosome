@@ -145,7 +145,7 @@ const blogConfig: BlogConfig = {
     {
       id: "wotaken",
       title: "ヲタけん",
-      imagePath: "/images/black.cat.jpg",
+      imagePath: "/images/black-cat.jpg",
       description: "Look at my awesome ヲタ magic !!!!",
     },
     {
