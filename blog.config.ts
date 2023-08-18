@@ -110,10 +110,10 @@ const blogConfig: BlogConfig = {
     },
   ],
   account: {
-    name: "horomi & Rie",
+    name: "はぷん",
     description:
-      "Notionサポーターで活動してたら、ちょっと好きなことを探したくなった２人",
-    image: `/images/horo-rie_profile.png`,
+      "たのしそうなことがだいすき！無駄こそ正義じゃっ!!!!!",
+    image: `/images/hapun.png`,
     social: {
       twitter: "https://twitter.com/otaneshikenkyu",
       instagram: "https://www.instagram.com/otameshikenkyu",
