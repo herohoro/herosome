@@ -1,11 +1,11 @@
 import blogConfig from "@/blog.config";
+import { SocialListWriter } from "../common/social-list_writer";
 
 export function ArticleAuthor({ writtenBy }: { writtenBy: string }) {
   const writer = blogConfig.writers.find((w) => w.id === writtenBy);
   if (!writer) {
     return null;
   }
-
   return (
     <div className="article-author">
       <div className="article-author-image-wrap">
@@ -17,6 +17,9 @@ export function ArticleAuthor({ writtenBy }: { writtenBy: string }) {
           height={110}
           className="article-author-image"
         />
+        <div className="social-list-wrap">
+        <SocialListWriter writerId={writer.id} />
+        </div>
       </div>
       <div className="article-author-inner">
         <p className="article-author-subtitle">Author</p>
