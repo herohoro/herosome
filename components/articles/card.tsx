@@ -5,6 +5,7 @@ import Link from "next/link";
 import { TagList } from "../common/tag-list";
 import { getTagList } from "../utils/get-tag-list";
 import { getCategory } from "../utils/get-category";
+import { getAuthor } from "../utils/get-author";
 
 function PublishdAt({ date }: { date: string }) {
   return (
@@ -48,6 +49,7 @@ export function ArticleCard({ article, className, href }: Props) {
           tags={getTagList(article.tags)}
           category={getCategory(article.category)}
         />
+        <p>&#x1f408;&#x200d;&#x2b1b;：{getAuthor(article.writtenBy)?.name}</p>
         <h2 className="article-title">
           <Link href={href}>{article.title}</Link>
         </h2>

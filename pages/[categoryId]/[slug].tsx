@@ -61,7 +61,7 @@ export default ({ article: defaultArticle, related }: DetailProps) => {
                   permalink={article.permalink}
                   title={article.data.title}
                 />
-                <ArticleAuthor writtenBy={article.data.writtenBy} />
+                {/* <ArticleAuthor writtenBy={article.data.writtenBy} /> */}
                 {related.length > 0 && <Related related={related} />}
                 {!!blogConfig.articlePage.afterContentAd && (
                   <div
@@ -73,7 +73,7 @@ export default ({ article: defaultArticle, related }: DetailProps) => {
                 )}
               </Main>
             )}
-            <Side id={article.slug} />
+            <Side id={article.slug} writer={article.data.writtenBy}/>
           </Wrapper>
         </>
       )}
