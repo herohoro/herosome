@@ -122,17 +122,17 @@ const blogConfig: BlogConfig = {
   },
   writers: [
     {
-      id: "horomi",
+      id: "148bfa26-a10a-4673-86c7-539868890a5c",
       name: "horomi",
       description:
         "Notionサポーターで活動してるけど、独学が生きがいな引きこもりさん",
       image: "/images/profile_500x500.PNG",
     },
     {
-      id: "steelydylan",
-      name: "steelydylan",
-      description: "profile here profile here profile here profile here",
-      image: "/images/me.jpeg",
+      id: "39b08876-4d5c-4a17-8773-1539c69302ca",
+      name: "Rie",
+      description: "Notionサポーターを主催してるけど、人もツールも推し活大好き",
+      image: "/images/tamura.jpg",
     },
   ],
   categories: [
