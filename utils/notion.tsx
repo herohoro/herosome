@@ -44,9 +44,9 @@ export const getDatabase = async (
         Object.keys(d).map(async (key) => {
           const property = d[key];
           if (property.type === "people") {
-            item[key.toLowerCase()] = property.people
-              .map((p) => (p as any).name)
-              .join(",");
+            item[key.toLowerCase()] = property.people[0].id
+              // .map((p) => (p as any).name)
+              // .join(",");
           } else if (property.type === "rich_text") {
             item[key.toLowerCase()] = property.rich_text[0]?.plain_text;
           } else if (property.type === "files") {
