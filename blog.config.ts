@@ -97,8 +97,8 @@ const blogConfig: BlogConfig = {
   ],
   subNavigation: [
     {
-      name: "terms",
-      url: "/about/terms",
+      name: "member",
+      url: "/about/member",
     },
     {
       name: "privacy",
@@ -111,8 +111,7 @@ const blogConfig: BlogConfig = {
   ],
   account: {
     name: "はぷん",
-    description:
-      "たのしそうなことがだいすき！無駄こそ正義じゃっ!!!!!",
+    description: "たのしそうなことがだいすき！無駄こそ正義じゃっ!!!!!",
     image: `/images/hapun.png`,
     social: {
       twitter: "https://twitter.com/otaneshikenkyu",
