@@ -97,12 +97,12 @@ const blogConfig: BlogConfig = {
   ],
   subNavigation: [
     {
-      name: "member",
+      name: "メンバー",
       url: "/about/member",
     },
     {
-      name: "privacy",
-      url: "/about/privacy",
+      name: "サブスク",
+      url: "/about/subscription",
     },
     {
       name: "GitHub",
