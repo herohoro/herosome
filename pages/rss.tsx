@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   articles.forEach((article) => {
     rss.item({
       title: article.data.title,
-      url: `${url}/${article.slug}`,
+      url: `${url}/${article.data.category}/${article.slug}`,
       description: article.excerpt,
       date: new Date(article.data.date),
     });
