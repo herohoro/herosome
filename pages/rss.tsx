@@ -2,7 +2,6 @@ import { GetServerSideProps } from "next";
 import Rss from "rss";
 import { getArticles } from "@/utils/get-articles";
 import blogConfig from "@/blog.config";
-import { getAuthor } from "@/components/utils/get-author";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { res } = ctx;
