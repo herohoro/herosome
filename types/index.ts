@@ -17,6 +17,7 @@ export type Tag = {
 };
 
 export type Article = {
+  writtenBy(writtenBy: any): unknown;
   content?: string;
   data: ArticleData;
   permalink: string;

@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next";
 import Rss from "rss";
 import { getArticles } from "@/utils/get-articles";
 import blogConfig from "@/blog.config";
+import { getAuthor } from "@/components/utils/get-author";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { res } = ctx;
@@ -22,12 +23,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   });
 
   articles.forEach((article) => {
+    const authorInfo = getAuthor(article.data.writtenBy);
+    const authorName = authorInfo ? authorInfo.name : "unknown";
+
     rss.item({
       title: article.data.title,
       url: `${url}/${article.data.category}/${article.slug}`,
       description: article.excerpt,
       date: new Date(article.data.date),
-      author: article.data.writtenBy,
+      author: authorName,
     });
   });
 
