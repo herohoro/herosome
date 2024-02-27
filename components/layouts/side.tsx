@@ -6,11 +6,14 @@ import { TagList } from "../common/tag-list";
 import { Toc } from "../toc";
 import { ArticleAuthor } from "../articles/author";
 
-export const Side: React.VFC<{ id?: string,writer?:string }> = ({ id,writer }) => {
+export const Side: React.VFC<{ id?: string; writer?: string }> = ({
+  id,
+  writer,
+}) => {
   return (
     <div className="side">
-      <Profile />
-      <ArticleAuthor writtenBy={writer}/>
+      {/* <Profile /> */}
+      <ArticleAuthor writtenBy={writer} />
       <div className="category-list-wrap">
         <CategoryList />
       </div>
