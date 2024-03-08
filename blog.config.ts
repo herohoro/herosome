@@ -79,33 +79,25 @@ const blogConfig: BlogConfig = {
   },
   navigation: [
     {
-      name: "Yoom",
-      url: `/yoom`,
+      name: "horomi",
+      url: `/horomi`,
     },
     {
-      name: "ヲタけん",
+      name: "アプリ",
       url: `/wotaken`,
     },
     {
-      name: "Rie",
-      url: `/rie`,
-    },
-    {
-      name: "horomi",
-      url: `/horomi`,
+      name: "Yoom",
+      url: `/yoom`,
     },
   ],
   subNavigation: [
     {
-      name: "メンバー",
+      name: "About",
       url: "/about/member",
     },
     {
-      name: "サブスク",
-      url: "/about/subscription",
-    },
-    {
-      name: "GitHub",
+      name: "本家",
       url: "https://github.com/steelydylan/Awesome",
     },
   ],
@@ -114,8 +106,8 @@ const blogConfig: BlogConfig = {
     description: "たのしそうなことがだいすき！無駄こそ正義じゃっ!!!!!",
     image: `/images/hapun.png`,
     social: {
-      twitter: "https://twitter.com/otaneshikenkyu",
-      instagram: "https://www.instagram.com/otameshikenkyu",
+      twitter: "https://twitter.com/mineral_30",
+      instagram: "https://www.instagram.com/horomi_design",
       github: "https://github.com/herohoro/herosome",
     },
   },
@@ -123,8 +115,7 @@ const blogConfig: BlogConfig = {
     {
       id: "148bfa26-a10a-4673-86c7-539868890a5c",
       name: "horomi",
-      description:
-        "Notionサポーターで活動してるけど、独学が生きがいな引きこもりさん",
+      description: "書く事がとにかく好き。独学が生きがい",
       image: "/images/profile_500x500.PNG",
       social: {
         twitter: "https://twitter.com/mineral_30",
@@ -132,36 +123,18 @@ const blogConfig: BlogConfig = {
         github: "https://github.com/herohoro",
       },
     },
-    {
-      id: "39b08876-4d5c-4a17-8773-1539c69302ca",
-      name: "Rie",
-      description: "Notionサポーターを主催してるけど、人もツールも推し活大好き",
-      image: "/images/tamura.jpg",
-      social: {
-        twitter: "https://twitter.com/RieTamura36",
-        instagram: "https://www.instagram.com/notionobasan",
-      },
-    },
+    // {
+    //   id: "39b08876-4d5c-4a17-8773-1539c69302ca",
+    //   name: "Rie",
+    //   description: "Notionサポーターを主催してるけど、人もツールも推し活大好き",
+    //   image: "/images/tamura.jpg",
+    //   social: {
+    //     twitter: "https://twitter.com/RieTamura36",
+    //     instagram: "https://www.instagram.com/notionobasan",
+    //   },
+    // },
   ],
   categories: [
-    {
-      id: "yoom",
-      title: "Yoom",
-      imagePath: "/images/paraglider.jpg",
-      description: "Look at my awesome Yoom magic !!!!",
-    },
-    {
-      id: "wotaken",
-      title: "ヲタけん",
-      imagePath: "/images/black-cat.jpg",
-      description: "Look at my awesome ヲタ magic !!!!",
-    },
-    {
-      id: "rie",
-      title: "Rie",
-      imagePath: "/images/camp.jpeg",
-      description: "Look at my awesome Rie life",
-    },
     {
       id: "horomi",
       title: "horomi",
@@ -169,11 +142,29 @@ const blogConfig: BlogConfig = {
       description: "Look at my awesome horomi life",
     },
     {
-      id: "about",
-      title: "About",
-      imagePath: "/images/sky.jpeg",
-      description: "",
+      id: "wotaken",
+      title: "アプリ",
+      imagePath: "/images/black-cat.jpg",
+      description: "Look at my awesome ヲタ magic !!!!",
     },
+    {
+      id: "yoom",
+      title: "Yoom",
+      imagePath: "/images/paraglider.jpg",
+      description: "Look at my awesome Yoom magic !!!!",
+    },
+    // {
+    //   id: "rie",
+    //   title: "Rie",
+    //   imagePath: "/images/camp.jpeg",
+    //   description: "Look at my awesome Rie life",
+    // },
+    // {
+    //   id: "about",
+    //   title: "About",
+    //   imagePath: "/images/sky.jpeg",
+    //   description: "",
+    // },
     {
       id: "sample",
       title: "Sample",
