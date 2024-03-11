@@ -159,12 +159,12 @@ const blogConfig: BlogConfig = {
     //   imagePath: "/images/camp.jpeg",
     //   description: "Look at my awesome Rie life",
     // },
-    // {
-    //   id: "about",
-    //   title: "About",
-    //   imagePath: "/images/sky.jpeg",
-    //   description: "",
-    // },
+    {
+      id: "about",
+      title: "About",
+      imagePath: "/images/sky.jpeg",
+      description: "",
+    },
     {
       id: "sample",
       title: "Sample",
