@@ -13,7 +13,7 @@
     "lint": "eslint './**/*.{ts,tsx}'"
   },
   "engines": {
-    "node": "18.17"
+    "node": "18.x"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +23,7 @@
     }
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "4",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "6.4.0",
     "@fortawesome/free-solid-svg-icons": "6.4.0",
