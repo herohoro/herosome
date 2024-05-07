@@ -55,7 +55,8 @@
     "styled-jsx-plugin-postcss": "^4.0.1",
     "styled-media-query": "^2.1.2",
     "swr": "^2.1.5",
-    "tocbot": "^4.13.4"
+    "tocbot": "^4.13.4",
+    "zod": "^3.23.6"
   },
   "devDependencies": {
     "@mdx-js/loader": "^1.5.7",
