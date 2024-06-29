@@ -84,7 +84,6 @@ export const getDatabase = async (
           }
         })
       );
-      // console.log(item);
       return {
         content: "",
         data: {

@@ -31,7 +31,6 @@ type Props = {
 };
 
 export function ArticleCard({ article, className, href }: Props) {
-  // console.log({article})
   return (
     <div className={className}>
       <div className="article-img-wrap">

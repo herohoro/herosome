@@ -5,7 +5,6 @@ export const TagList: React.VFC<{ category?: Category; tags?: Tag[] }> = ({
   category,
   tags,
 }) => {
-  // console.log(tags);
   return (
     <ul className="taglist">
       {category && (
