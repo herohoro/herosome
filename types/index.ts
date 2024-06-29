@@ -3,7 +3,7 @@ export type ArticleData = {
   date: string;
   category: string;
   writtenBy: string;
-  tags?: string[];
+  tags?: Tag[];
   thumbnail?: string;
   description?: string;
   original?: boolean;
@@ -12,6 +12,7 @@ export type ArticleData = {
 };
 
 export type Tag = {
+  filter(arg0: (tag: any) => any): unknown;
   id: string;
   title: string;
 };
