@@ -39,6 +39,7 @@ export const getDatabase = async (
         page: "",
         id: result.id,
         category: "",
+        tags: [],
       };
       await Promise.all(
         Object.keys(d).map(async (key) => {
@@ -74,7 +75,8 @@ export const getDatabase = async (
           } else if (property.type === "checkbox") {
             item[key.toLowerCase()] = property.checkbox;
           } else if (property.type === "multi_select") {
-            item[key.toLowerCase()] = property.multi_select?.[0]?.name;
+            item[key.toLowerCase()] =
+              property.multi_select?.map((opt) => opt.name) || [];
           } else if (property.type === "select") {
             item[key.toLowerCase()] = property.select?.name;
           } else if (property.type === "date") {
@@ -82,11 +84,11 @@ export const getDatabase = async (
           }
         })
       );
-      // console.log(item)
+      // console.log(item);
       return {
         content: "",
         data: {
-          tags: [],
+          tags: item.tags,
           title: item.page,
           date: item.date,
           category: item.category,
@@ -327,7 +329,7 @@ export const getArticleFromNotion = async (slug: string) => {
     ...post,
     content: renderToString(<div>{notionArticle}</div>),
   } as Article;
-
+  console.log(article);
   return {
     article,
     related: [],
