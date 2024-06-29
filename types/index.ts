@@ -12,7 +12,6 @@ export type ArticleData = {
 };
 
 export type Tag = {
-  filter(arg0: (tag: any) => any): unknown;
   id: string;
   title: string;
 };
