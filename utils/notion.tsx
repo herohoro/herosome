@@ -328,7 +328,6 @@ export const getArticleFromNotion = async (slug: string) => {
     ...post,
     content: renderToString(<div>{notionArticle}</div>),
   } as Article;
-  console.log(article);
   return {
     article,
     related: [],
