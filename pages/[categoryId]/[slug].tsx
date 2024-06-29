@@ -73,7 +73,7 @@ export default ({ article: defaultArticle, related }: DetailProps) => {
                 )}
               </Main>
             )}
-            <Side id={article.slug} writer={article.data.writtenBy}/>
+            <Side id={article.slug} writer={article.data.writtenBy} />
           </Wrapper>
         </>
       )}
