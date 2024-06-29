@@ -3,7 +3,7 @@ export type ArticleData = {
   date: string;
   category: string;
   writtenBy: string;
-  tags?: Tag[];
+  tags?: string[];
   thumbnail?: string;
   description?: string;
   original?: boolean;
