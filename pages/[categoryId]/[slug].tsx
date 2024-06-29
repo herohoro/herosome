@@ -73,7 +73,7 @@ export default ({ article: defaultArticle, related }: DetailProps) => {
                 )}
               </Main>
             )}
-            <Side id={article.slug} writer={article.data.writtenBy}/>
+            <Side id={article.slug} writer={article.data.writtenBy} />
           </Wrapper>
         </>
       )}
@@ -123,9 +123,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     .map((article) => {
       return {
         params: {
-          id: article.slug,
+          id: article.slug[0],
           categoryId: article.data.category,
-          slug: article.slug,
+          slug: article.slug[0],
         },
       };
     });
