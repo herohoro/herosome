@@ -1,5 +1,9 @@
 import blogConfig from "@/blog.config";
 
-export const getTagList = (tags: string[]) => {
-  return tags.map((t) => blogConfig.tags.find((ta) => ta.id === t));
+export const getTagList = (slugs: string[]) => {
+  const tags = slugs.flatMap((slug) =>
+    blogConfig.tags?.find((tag) => tag.id === slug)
+  );
+  console.log(slugs);
+  return tags || [];
 };

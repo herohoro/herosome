@@ -1,10 +1,11 @@
 import { Category, Tag } from "@/types";
 import Link from "next/link";
 
-export const TagList: React.VFC<{ category?: Category; tags: Tag[] }> = ({
+export const TagList: React.VFC<{ category?: Category; tags?: Tag[] }> = ({
   category,
   tags,
 }) => {
+  // console.log(tags);
   return (
     <ul className="taglist">
       {category && (
@@ -12,13 +13,14 @@ export const TagList: React.VFC<{ category?: Category; tags: Tag[] }> = ({
           <Link href={`/${category.id}`}>{category.title}</Link>
         </li>
       )}
-      {tags
-        .filter((tag) => !!tag?.id)
-        .map((tag) => (
-          <li key={tag.id}>
-            <Link href={`/tags/${tag.id}`}>{tag.title}</Link>
-          </li>
-        ))}
+      {tags &&
+        tags
+          .filter((tag) => tag && tag.id)
+          .map((tag) => (
+            <li key={tag.id}>
+              <Link href={`/tags/${tag.id}`}># {tag.title}</Link>
+            </li>
+          ))}
       <style jsx>
         {`
           .taglist {
