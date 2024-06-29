@@ -98,14 +98,14 @@ export const getDatabase = async (
           status: item.published ? "open" : "draft",
         },
         permalink: `${blogConfig.siteUrl}/${item.category}/${item.slug}`,
-        slug: item.slug,
+        slug: item.slug[0],
         id: item.id,
         excerpt: "",
         related: [],
       } as unknown as Article;
     })
   );
-
+  // console.log(posts);
   return posts;
 };
 
@@ -279,8 +279,9 @@ export const getNotionArticle = async (blocks: BlockObjectResponse[]) => {
 
 export const getArticleFromNotion = async (slug: string) => {
   const posts = await getDatabase(process.env.NOTION_DATABASE_ID as string);
-  const post = posts.find((p) => p.slug === slug);
-  const page = await getPage(post.id);
+  console.log(posts);
+  const post = posts.find((p) => p.slug[0] === slug);
+  // const page = await getPage(post.id);
   const blocks = await getBlocks(post.id);
   const childBlocks = await Promise.all(
     blocks

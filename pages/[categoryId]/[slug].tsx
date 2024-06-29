@@ -123,9 +123,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     .map((article) => {
       return {
         params: {
-          id: article.slug[0],
+          id: article.slug,
           categoryId: article.data.category,
-          slug: article.slug[0],
+          slug: article.slug,
         },
       };
     });
