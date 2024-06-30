@@ -79,7 +79,7 @@ const blogConfig: BlogConfig = {
   },
   navigation: [
     {
-      name: "horomi",
+      name: "日記",
       url: `/horomi`,
     },
     {
@@ -137,7 +137,7 @@ const blogConfig: BlogConfig = {
   categories: [
     {
       id: "horomi",
-      title: "horomi",
+      title: "日記",
       imagePath: "/images/cuba.jpeg",
       description: "Look at my awesome horomi life",
     },
@@ -174,24 +174,40 @@ const blogConfig: BlogConfig = {
   ],
   tags: [
     {
-      id: "london",
-      title: "London",
+      id: "handcrafts",
+      title: "手芸",
     },
     {
-      id: "boston",
-      title: "Boston",
+      id: "cooking",
+      title: "食・料理",
     },
     {
-      id: "paris",
-      title: "Paris",
+      id: "walking",
+      title: "散歩",
     },
     {
-      id: "fire",
-      title: "Fire",
+      id: "cleaning",
+      title: "掃除",
     },
     {
-      id: "sky",
-      title: "Sky",
+      id: "pdca",
+      title: "PDCA",
+    },
+    {
+      id: "studying",
+      title: "勉強",
+    },
+    {
+      id: "techo",
+      title: "手帳",
+    },
+    {
+      id: "animal",
+      title: "生き物",
+    },
+    {
+      id: "useful",
+      title: "便利アイテム",
     },
   ],
 };

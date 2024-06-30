@@ -25,10 +25,10 @@ export const Footer: React.VFC = () => {
         <div className="footer-column">
           <CategoryList />
         </div>
-        {/* <div className="footer-column">
+        <div className="footer-column">
           <SubTitle>{blogConfig.widgets.tagList.title}</SubTitle>
           <TagList tags={blogConfig.tags} />
-        </div> */}
+        </div>
       </div>
       <p className="copyright">
         Copyright &copy; {new Date().getFullYear()} {blogConfig.siteName} All
