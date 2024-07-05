@@ -9,6 +9,10 @@ export const Text = ({
   if (!sourceText) {
     return null;
   }
+  if (sourceText.length === 0) {
+    console.log("sourceTextが空ってことだね");
+    return <br />;
+  }
   return (
     <>
       {sourceText.map((value) => {
