@@ -13,23 +13,28 @@ export const useArticles = ({
   tagId?: string;
   defaultArticles: Article[];
 }) => {
-  if (blogConfig.use !== "notion") {
-    return {
-      articles: defaultArticles,
-      isLoading: false,
-      isError: false,
-    };
-  }
-  const { data, error } = useClientSWR("/api/notion/articles", {
-    query: {
-      categoryId,
-      tagId,
-      current: `${current}`,
-    },
+  const articlePromises = blogConfig.use.map(async (source) => {
+    if (source === "notion") {
+      const { data, error } = await useClientSWR("/api/notion/articles", {
+        query: {
+          categoryId,
+          tagId,
+          current: `${current}`,
+        },
+      });
+      return {
+        articles: (data?.articles ?? defaultArticles) as Article[],
+        isLoading: !error && !data,
+        isError: error,
+      };
+    } else if (source === "mdx") {
+      return {
+        articles: defaultArticles,
+        isLoading: false,
+        isError: false,
+      };
+    }
   });
-  return {
-    articles: (data?.articles ?? defaultArticles) as Article[],
-    isLoading: !error && !data,
-    isError: error,
-  };
+
+  return articlePromises;
 };
