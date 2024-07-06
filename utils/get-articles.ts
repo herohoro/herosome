@@ -4,17 +4,25 @@ import { getArticlesFromFile, getArticleFromFile } from "./file";
 import { getArticleFromNotion, getDatabase } from "./notion";
 
 export const getArticles = async (): Promise<Article[]> => {
-  if (blogConfig.use === "notion") {
-    return getDatabase(process.env.NOTION_DATABASE_ID as string, {
-      sorts: [
-        {
-          property: "rEYP",
-          direction: "descending",
-        },
-      ],
-    });
-  }
-  return getArticlesFromFile();
+  const articlePromises = blogConfig.use.map((source) => {
+    if (source === "notion") {
+      return getDatabase(process.env.NOTION_DATABASE_ID as string, {
+        sorts: [
+          {
+            property: "rEYP",
+            direction: "descending",
+          },
+        ],
+      });
+    } else if (source === "mdx") {
+      return getArticlesFromFile();
+    }
+  });
+
+  const articlesArrays = await Promise.all(articlePromises);
+  const articles = articlesArrays.flat();
+
+  return articles;
 };
 
 export const getFilteredArticles = async ({
@@ -65,8 +73,9 @@ export const getArticle = async (
   article: Article;
   related: Article[];
 }> => {
-  if (blogConfig.use === "notion") {
+  if (blogConfig.use.includes("notion")) {
     return getArticleFromNotion(slug);
+  } else if (blogConfig.use.includes("mdx")) {
+    return getArticleFromFile(slug);
   }
-  return getArticleFromFile(slug);
 };
