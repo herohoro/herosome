@@ -4,23 +4,38 @@ import { getArticlesFromFile, getArticleFromFile } from "./file";
 import { getArticleFromNotion, getDatabase } from "./notion";
 
 export const getArticles = async (): Promise<Article[]> => {
-  const articlePromises = blogConfig.use.map((source) => {
+  const articlePromises = blogConfig.use.map(async (source) => {
     if (source === "notion") {
-      return getDatabase(process.env.NOTION_DATABASE_ID as string, {
-        sorts: [
-          {
-            property: "rEYP",
-            direction: "descending",
-          },
-        ],
-      });
+      const notionArticles = await getDatabase(
+        process.env.NOTION_DATABASE_ID as string,
+        {
+          sorts: [
+            {
+              property: "rEYP",
+              direction: "descending",
+            },
+          ],
+        }
+      );
+      // 各記事にソース情報を追加
+      return notionArticles.map((article) => ({
+        ...article,
+        source: "notion",
+      }));
     } else if (source === "mdx") {
-      return getArticlesFromFile();
+      const mdxArticles = await getArticlesFromFile();
+      // 各記事にソース情報を追加
+      return mdxArticles.map((article) => ({
+        ...article,
+        source: "mdx",
+      }));
     }
   });
 
   const articlesArrays = await Promise.all(articlePromises);
   const articles = articlesArrays.flat();
+
+  console.log("Filter前でGET中....", articles);
 
   return articles;
 };

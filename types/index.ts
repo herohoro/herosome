@@ -25,6 +25,7 @@ export type Article = {
   id: string;
   excerpt: string;
   related: string[];
+  source: string;
 };
 
 export type Category = {

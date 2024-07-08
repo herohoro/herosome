@@ -18,35 +18,24 @@ export const useArticles = ({
   defaultArticles: Article[];
 }) => {
   const [articles, setArticles] = useState<Article[]>(defaultArticles);
+  const { data } = useSWR(
+    `/api/notion/articles?categoryId=${categoryId}&tagId=${tagId}&current=${current}`,
+    fetcher
+  );
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const articlePromises = blogConfig.use.map(async (source) => {
-        if (source === "notion") {
-          try {
-            const { data } = await useSWR(`/api/notion/articles`, {
-              fetcher,
-              query: {
-                categoryId,
-                tagId,
-                current: `${current}`,
-              },
-            });
-            return {
-              articles: (data?.articles ?? defaultArticles) as Article[],
-              isLoading: false,
-              isError: false,
-            };
-          } catch (error) {
-            console.error("SWR fetch error:", error);
-            return {
-              articles: defaultArticles,
-              isLoading: false,
-              isError: true,
-            };
-          }
-        } else if (source === "mdx") {
+      const articlePromises = defaultArticles.map(async (article) => {
+        if (article.source === "notion") {
           return {
+            ...article,
+            articles: (data?.articles ?? defaultArticles) as Article[],
+            isLoading: false,
+            isError: false,
+          };
+        } else if (article.source === "mdx") {
+          return {
+            ...article,
             articles: defaultArticles,
             isLoading: false,
             isError: false,
@@ -56,17 +45,15 @@ export const useArticles = ({
 
       // 非同期処理が完全に(Promise)全て(.all)終わるまで待機する
       const fetchedArticles = await Promise.all(articlePromises);
-      console.log("すべての処理が完了した", fetchedArticles);
 
       // データソースから取得した記事を統合してセットする
-      const mergedArticles = fetchedArticles.reduce((acc, curr) => {
-        return acc.concat(curr.articles);
-      }, [] as Article[]);
-      setArticles(mergedArticles);
+
+      setArticles(fetchedArticles);
     };
 
     fetchArticles();
   }, [categoryId, tagId, current, defaultArticles]);
-  console.log("最後：", { articles });
+
+  console.log("USE_最後：", { articles });
   return { articles };
 };
