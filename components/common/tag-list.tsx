@@ -12,14 +12,13 @@ export const TagList: React.VFC<{ category?: Category; tags?: Tag[] }> = ({
           <Link href={`/${category.id}`}>{category.title}</Link>
         </li>
       )}
-      {tags &&
-        tags
-          .filter((tag) => tag && tag.id)
-          .map((tag) => (
-            <li key={tag.id}>
-              <Link href={`/tags/${tag.id}`}># {tag.title}</Link>
-            </li>
-          ))}
+      {tags
+        ?.filter((tag) => !!tag?.id)
+        .map((tag) => (
+          <li key={tag.id}>
+            <Link href={`/tags/${tag.id}`}>{tag.title}</Link>
+          </li>
+        ))}
       <style jsx>
         {`
           .taglist {
