@@ -1,19 +1,39 @@
 import blogConfig from "@/blog.config";
 import { Article } from "@/types";
 import { renderToString } from "react-dom/server";
+import matter from "gray-matter";
+import fs from "fs";
 
 export const getArticlesFromFile = () => {
   // Get articles from folder
   const entries = ((ctx: any) => {
     const keys = ctx.keys();
+    console.log(keys);
     const values = keys.map(ctx);
+
     const data = keys.map((key, index) => {
       // Create slug from filename
       const paths = key.split("/");
       paths.pop();
+      console.log(paths); // [ '.', 'alaska' ] ['contents', 'alaska']
+
       const slug = paths.pop();
-      const { default: content, ...extra } = values[index];
+
+      // const { default: content, ...extra } = values[index];
+      // const fileModule = values[index];
+      // const fileContents = fileModule.default;
+      const filePath = ctx.resolve(key);
+      const fileContents = fs.readFileSync(filePath, "utf8");
+
+      const { data: extra, content } = matter(fileContents);
+
+      if (extra.date instanceof Date) {
+        extra.date = extra.date.toISOString();
+      }
+
+      console.log(content);
       // Parse document
+      // console.log(content);
       return {
         content,
         data: extra,
