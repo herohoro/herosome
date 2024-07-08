@@ -8,14 +8,13 @@ export const getArticlesFromFile = () => {
   // Get articles from folder
   const entries = ((ctx: any) => {
     const keys = ctx.keys();
-    console.log(keys);
+    // console.log(keys);
     const values = keys.map(ctx);
 
     const data = keys.map((key, index) => {
       // Create slug from filename
       const paths = key.split("/");
       paths.pop();
-      console.log(paths); // [ '.', 'alaska' ] ['contents', 'alaska']
 
       const slug = paths.pop();
 
@@ -31,7 +30,6 @@ export const getArticlesFromFile = () => {
         extra.date = extra.date.toISOString();
       }
 
-      console.log(content);
       // Parse document
       // console.log(content);
       return {
@@ -62,18 +60,29 @@ export const getArticlesFromFile = () => {
 };
 
 export const getArticleFromFile = async (slug: string) => {
-  const article = await import(`@/contents/${slug}/index.mdx`);
-  const { default: Default, ...data } = article;
+  // const article = await import(`@/contents/${slug}/index.mdx`);
+  // const { default: Default, ...data } = article;
+  console.log("slug*****:", slug);
+
   const articles = await getArticlesFromFile();
+  const article = articles.filter((p) => {
+    return p.slug === slug;
+  });
+  console.log("******", article);
+
+  // const { default: Default, ...data } = article;
+  const { data } = article;
+  console.log("**** data", data);
   const { related } = data;
+  // console.log(articles);
 
   return {
     article: {
-      content: renderToString(<Default />),
+      content: data.content,
       data,
       permalink: `${blogConfig.siteUrl}/${data.category}/${slug}`,
       slug,
-    } as Article,
+    } as unknown as Article,
     related: related
       ? articles
           .filter((p) => {
