@@ -171,6 +171,18 @@ const blogConfig: BlogConfig = {
       imagePath: "/images/alaska.jpeg",
       description: "Look at our awesome's sample ",
     },
+    {
+      id: "camp",
+      title: "Camp",
+      imagePath: "/images/camp.jpeg",
+      description: "Look at my awesome camp life",
+    },
+    {
+      id: "travel",
+      title: "Travel",
+      imagePath: "/images/london.jpeg",
+      description: "Look at my awesome travel life",
+    },
   ],
   tags: [
     {
