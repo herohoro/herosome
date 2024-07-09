@@ -62,23 +62,18 @@ export const getArticlesFromFile = () => {
 export const getArticleFromFile = async (slug: string) => {
   // const article = await import(`@/contents/${slug}/index.mdx`);
   // const { default: Default, ...data } = article;
-  console.log("slug*****:", slug);
 
   const articles = await getArticlesFromFile();
   const article = articles.filter((p) => {
     return p.slug === slug;
   });
-  console.log("******", article);
 
-  // const { default: Default, ...data } = article;
-  const { data } = article;
-  console.log("**** data", data);
+  const { data } = article[0];
+
   const { related } = data;
-  // console.log(articles);
-
   return {
     article: {
-      content: data.content,
+      content: article[0].content,
       data,
       permalink: `${blogConfig.siteUrl}/${data.category}/${slug}`,
       slug,
