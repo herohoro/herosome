@@ -9,6 +9,7 @@ export type ArticleData = {
   original?: boolean;
   hideThumbnail?: boolean;
   status?: "open" | "draft" | "close";
+  related?: string[];
 };
 
 export type Tag = {
