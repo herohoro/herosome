@@ -40,6 +40,7 @@ export const getDatabase = async (
         id: result.id,
         category: "",
         tags: [],
+        related: [],
       };
       await Promise.all(
         Object.keys(d).map(async (key) => {
@@ -96,12 +97,12 @@ export const getDatabase = async (
           id: item.id,
           description: item.description,
           status: item.published ? "open" : "draft",
+          related: [],
         },
         permalink: `${blogConfig.siteUrl}/${item.category}/${item.slug}`,
         slug: item.slug[0],
         id: item.id,
         excerpt: "",
-        related: [],
       } as unknown as Article;
     })
   );
@@ -328,6 +329,7 @@ export const getArticleFromNotion = async (slug: string) => {
     ...post,
     content: renderToString(<div>{notionArticle}</div>),
   } as Article;
+  console.log("******* FromNotion_return", article);
   return {
     article,
     related: [],
