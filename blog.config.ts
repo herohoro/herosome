@@ -1,7 +1,7 @@
 import { BlogConfig } from "./types/config";
 
 const blogConfig: BlogConfig = {
-  use: ["notion", "mdx"], // mdx or notion
+  use: ["mdx"], // mdx or notion
   siteLogo: {
     url: "/images/logo.svg",
     width: 201,
@@ -239,6 +239,26 @@ const blogConfig: BlogConfig = {
     {
       id: "useful",
       title: "便利アイテム",
+    },
+    {
+      id: "london",
+      title: "London",
+    },
+    {
+      id: "boston",
+      title: "Boston",
+    },
+    {
+      id: "paris",
+      title: "Paris",
+    },
+    {
+      id: "fire",
+      title: "Fire",
+    },
+    {
+      id: "sky",
+      title: "Sky",
     },
   ],
 };
