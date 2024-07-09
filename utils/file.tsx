@@ -25,10 +25,13 @@ export const getArticlesFromFile = () => {
       const fileContents = fs.readFileSync(filePath, "utf8");
 
       const { data: extra, content } = matter(fileContents);
+      extra.id = "";
+      extra.description = extra.description || "";
 
       if (extra.date instanceof Date) {
         extra.date = extra.date.toISOString();
       }
+      // console.log("****** FromFile articles_extra", extra);
 
       // Parse document
       // console.log(content);
@@ -37,6 +40,8 @@ export const getArticlesFromFile = () => {
         data: extra,
         permalink: `${blogConfig.siteUrl}/${extra.category}/${slug}`,
         slug,
+        id: "",
+        excerpt: "",
       };
     });
     return data;

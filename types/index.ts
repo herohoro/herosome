@@ -10,6 +10,7 @@ export type ArticleData = {
   hideThumbnail?: boolean;
   status?: "open" | "draft" | "close";
   related: string[];
+  id?: string;
 };
 
 export type Tag = {
@@ -23,8 +24,8 @@ export type Article = {
   data: ArticleData;
   permalink: string;
   slug?: string;
-  id: string;
-  excerpt: string;
+  id?: string;
+  excerpt?: string;
   // related: string[];
   source: string;
 };
