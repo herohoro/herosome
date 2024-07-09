@@ -102,13 +102,12 @@ const blogConfig: BlogConfig = {
     },
   ],
   account: {
-    name: "はぷん",
-    description: "たのしそうなことがだいすき！無駄こそ正義じゃっ!!!!!",
-    image: `/images/hapun.png`,
+    name: "steelydylan",
+    description: "profile here profile here profile here profile here",
+    image: `/images/me.jpeg`,
     social: {
-      twitter: "https://twitter.com/mineral_30",
-      instagram: "https://www.instagram.com/horomi_design",
-      github: "https://github.com/herohoro/herosome",
+      twitter: "https://twitter.com/steelydylan",
+      github: "https://github.com/steelydylan",
     },
   },
   writers: [
@@ -121,6 +120,26 @@ const blogConfig: BlogConfig = {
         twitter: "https://twitter.com/mineral_30",
         instagram: "https://www.instagram.com/horomi_design/",
         github: "https://github.com/herohoro",
+      },
+    },
+    {
+      id: "steelydylan",
+      name: "steelydylan",
+      description: "profile here profile here profile here profile here",
+      image: "/images/me.jpeg",
+      social: {
+        twitter: "https://twitter.com/steelydylan",
+        github: "https://github.com/steelydylan",
+      },
+    },
+    {
+      id: "awesome",
+      name: "Mr. AWESOME",
+      description: "profile here profile here profile here profile here",
+      image: "/images/me.jpeg",
+      social: {
+        twitter: "https://twitter.com/steelydylan",
+        github: "https://github.com/steelydylan",
       },
     },
     // {
