@@ -88,9 +88,13 @@ export const getArticle = async (
   article: Article;
   related: Article[];
 }> => {
-  if (blogConfig.use.includes("notion")) {
+  const articles = await getArticles();
+
+  const article = articles.find((article) => article.slug === slug);
+
+  if (article.source === "notion") {
     return getArticleFromNotion(slug);
-  } else if (blogConfig.use.includes("mdx")) {
+  } else if (article.source === "mdx") {
     return getArticleFromFile(slug);
   }
 };
