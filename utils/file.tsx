@@ -4,6 +4,10 @@ import { renderToString } from "react-dom/server";
 import matter from "gray-matter";
 import fs from "fs";
 
+const isFileType = (filePath, type) => {
+  return filePath.endsWith(`.${type}`);
+};
+
 export const getArticlesFromFile = () => {
   // Get articles from folder
   const entries = ((ctx: any) => {
@@ -22,9 +26,26 @@ export const getArticlesFromFile = () => {
       // const fileModule = values[index];
       // const fileContents = fileModule.default;
       const filePath = ctx.resolve(key);
+      // console.log(`Processing file: ${filePath}`); // 追加
+
+      if (!isFileType(filePath, "mdx")) {
+        console.error(`Invalid file type for file: ${filePath}`);
+        return null;
+      }
+
       const fileContents = fs.readFileSync(filePath, "utf8");
+      if (!fileContents.startsWith("---")) {
+        console.error(`Invalid YAML front matter in file: ${filePath}`);
+        throw new Error(`Invalid YAML front matter in file: ${filePath}`);
+      }
+
+      // console.log(`File contents: ${fileContents}`); // 追加
 
       const { data: extra, content } = matter(fileContents);
+      console.log(
+        `Matter result - Data: ${JSON.stringify(extra)}, Content: ${content}`
+      ); // 追加
+
       extra.id = "";
       extra.description = extra.description || "";
 
