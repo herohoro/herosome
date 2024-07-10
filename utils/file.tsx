@@ -3,6 +3,19 @@ import { Article } from "@/types";
 import { renderToString } from "react-dom/server";
 import matter from "gray-matter";
 import fs from "fs";
+import path from "path";
+
+const mdxExists = (filePath: string) => {
+  try {
+    fs.accessSync(filePath, fs.constants.R_OK);
+    return true;
+  } catch (err) {
+    if (err.code === "ENOENT") {
+      return false;
+    }
+    throw err;
+  }
+};
 
 export const getArticlesFromFile = () => {
   // Get articles from folder
@@ -18,10 +31,23 @@ export const getArticlesFromFile = () => {
 
       const slug = paths.pop();
 
+      const filePath = path.join(
+        process.cwd(),
+        "src",
+        String(ctx.resolve(key)),
+        "index.mdx"
+      );
+      const mdxFileExists = mdxExists(filePath);
+      console.log(`MDX file exists for ${slug}: ${mdxFileExists}`);
+
+      if (!mdxFileExists) {
+        return null; // Skip processing if MDX file doesn't exist
+      }
+
       // const { default: content, ...extra } = values[index];
       // const fileModule = values[index];
       // const fileContents = fileModule.default;
-      const filePath = ctx.resolve(key);
+      // const filePath = ctx.resolve(key);
       const fileContents = fs.readFileSync(filePath, "utf8");
 
       const { data: extra, content } = matter(fileContents);
@@ -44,7 +70,7 @@ export const getArticlesFromFile = () => {
         excerpt: "",
       };
     });
-    return data;
+    return data.filter((item) => item !== null);
     // @ts-ignore
   })(require.context("@/contents", true, /\.mdx$/));
   const uniq = [
