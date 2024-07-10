@@ -25,7 +25,6 @@ export const getArticlesFromFile = () => {
   // Get articles from folder
   const entries = ((ctx: any) => {
     const keys = ctx.keys();
-    // console.log(keys);
     const values = keys.map(ctx);
 
     const data = keys.map((key, index) => {
@@ -42,39 +41,26 @@ export const getArticlesFromFile = () => {
         "index.mdx"
       );
       const mdxFileExists = mdxExists(filePath);
-      console.log(`MDX file exists for ${slug}: ${mdxFileExists}`);
+      // console.log(`MDX file exists for ${slug}: ${mdxFileExists}`);
 
       if (!mdxFileExists) {
         return null; // Skip processing if MDX file doesn't exist
       }
 
-      // const { default: content, ...extra } = values[index];
-      // const fileModule = values[index];
-      // const fileContents = fileModule.default;
-      // const filePath = ctx.resolve(key);
       const fileContents = fs.readFileSync(filePath, "utf8");
       if (!fileContents.startsWith("---")) {
         console.error(`Invalid YAML front matter in file: ${filePath}`);
         throw new Error(`Invalid YAML front matter in file: ${filePath}`);
       }
 
-      // console.log(`File contents: ${fileContents}`); // 追加
-
       const { data: extra, content } = matter(fileContents);
-      console.log(
-        `Matter result - Data: ${JSON.stringify(extra)}, Content: ${content}`
-      ); // 追加
-
       extra.id = "";
       extra.description = extra.description || "";
 
       if (extra.date instanceof Date) {
         extra.date = extra.date.toISOString();
       }
-      // console.log("****** FromFile articles_extra", extra);
 
-      // Parse document
-      // console.log(content);
       return {
         content,
         data: extra,
@@ -105,9 +91,6 @@ export const getArticlesFromFile = () => {
 };
 
 export const getArticleFromFile = async (slug: string) => {
-  // const article = await import(`@/contents/${slug}/index.mdx`);
-  // const { default: Default, ...data } = article;
-
   const articles = await getArticlesFromFile();
   const article = articles.filter((p) => {
     return p.slug === slug;

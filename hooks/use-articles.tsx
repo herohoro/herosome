@@ -54,6 +54,6 @@ export const useArticles = ({
     fetchArticles();
   }, [categoryId, tagId, current, defaultArticles]);
 
-  console.log("USE_最後：", { articles });
+  // console.log("USE_最後：", { articles });
   return { articles };
 };

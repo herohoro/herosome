@@ -329,7 +329,7 @@ export const getArticleFromNotion = async (slug: string) => {
     ...post,
     content: renderToString(<div>{notionArticle}</div>),
   } as Article;
-  console.log("******* FromNotion_return", article);
+  // console.log("******* FromNotion_return", article);
   return {
     article,
     related: [],
