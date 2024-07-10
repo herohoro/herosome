@@ -123,6 +123,17 @@ const blogConfig: BlogConfig = {
       },
     },
     {
+      id: "horomi",
+      name: "horomi",
+      description: "書く事がとにかく好き。独学が生きがい",
+      image: "/images/profile_500x500.PNG",
+      social: {
+        twitter: "https://twitter.com/mineral_30",
+        instagram: "https://www.instagram.com/horomi_design/",
+        github: "https://github.com/herohoro",
+      },
+    },
+    {
       id: "steelydylan",
       name: "steelydylan",
       description: "profile here profile here profile here profile here",
