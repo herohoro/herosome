@@ -25,46 +25,51 @@ export const getArticlesFromFile = () => {
   // Get articles from folder
   const entries = ((ctx: any) => {
     const keys = ctx.keys();
-    const values = keys.map(ctx);
 
-    const data = keys.map((key, index) => {
-      // Create slug from filename
-      const paths = key.split("/");
-      paths.pop();
+    console.log("***** keys", keys);
 
-      const slug = paths.pop();
+    const data = keys
+      .filter((key) => key.startsWith("contents/"))
+      .map((key, index) => {
+        // Create slug from filename
+        const filePath = key;
+        const paths = key.split("/");
+        paths.pop();
+        console.log("****** paths", paths);
+        const slug = paths.pop();
 
-      const filePath = path.join(process.cwd(), String(ctx.resolve(key)));
-      const mdxFileExists = mdxExists(filePath);
-      // console.log(`MDX file exists for ${slug}: ${mdxFileExists}`);
+        console.log("****** filePath", filePath);
 
-      if (!mdxFileExists) {
-        return null; // Skip processing if MDX file doesn't exist
-      }
+        const mdxFileExists = mdxExists(filePath);
+        // console.log(`MDX file exists for ${slug}: ${mdxFileExists}`);
 
-      const fileContents = fs.readFileSync(filePath, "utf8");
-      if (!fileContents.startsWith("---")) {
-        console.error(`Invalid YAML front matter in file: ${filePath}`);
-        throw new Error(`Invalid YAML front matter in file: ${filePath}`);
-      }
+        if (!mdxFileExists) {
+          return null; // Skip processing if MDX file doesn't exist
+        }
 
-      const { data: extra, content } = matter(fileContents);
-      extra.id = "";
-      extra.description = extra.description || "";
+        const fileContents = fs.readFileSync(filePath, "utf8");
+        if (!fileContents.startsWith("---")) {
+          console.error(`Invalid YAML front matter in file: ${filePath}`);
+          throw new Error(`Invalid YAML front matter in file: ${filePath}`);
+        }
 
-      if (extra.date instanceof Date) {
-        extra.date = extra.date.toISOString();
-      }
+        const { data: extra, content } = matter(fileContents);
+        extra.id = "";
+        extra.description = extra.description || "";
 
-      return {
-        content,
-        data: extra,
-        permalink: `${blogConfig.siteUrl}/${extra.category}/${slug}`,
-        slug,
-        id: "",
-        excerpt: "",
-      };
-    });
+        if (extra.date instanceof Date) {
+          extra.date = extra.date.toISOString();
+        }
+
+        return {
+          content,
+          data: extra,
+          permalink: `${blogConfig.siteUrl}/${extra.category}/${slug}`,
+          slug,
+          id: "",
+          excerpt: "",
+        };
+      });
     return data.filter((item) => item !== null);
     // @ts-ignore
   })(require.context("@/contents", true, /\.mdx$/));
