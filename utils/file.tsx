@@ -34,12 +34,7 @@ export const getArticlesFromFile = () => {
 
       const slug = paths.pop();
 
-      const filePath = path.join(
-        process.cwd(),
-        "src",
-        String(ctx.resolve(key)),
-        "index.mdx"
-      );
+      const filePath = path.join(process.cwd(), String(ctx.resolve(key)));
       const mdxFileExists = mdxExists(filePath);
       // console.log(`MDX file exists for ${slug}: ${mdxFileExists}`);
 
