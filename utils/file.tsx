@@ -32,7 +32,7 @@ export const getArticlesFromFile = () => {
       .filter((key) => key.startsWith("contents/"))
       .map((key, index) => {
         // Create slug from filename
-        const filePath = key;
+        const filePath = `./${key}`;
         const paths = key.split("/");
         paths.pop();
         console.log("****** paths", paths);
@@ -48,12 +48,14 @@ export const getArticlesFromFile = () => {
         }
 
         const fileContents = fs.readFileSync(filePath, "utf8");
+
         if (!fileContents.startsWith("---")) {
           console.error(`Invalid YAML front matter in file: ${filePath}`);
           throw new Error(`Invalid YAML front matter in file: ${filePath}`);
         }
 
         const { data: extra, content } = matter(fileContents);
+        console.log("***** content", content);
         extra.id = "";
         extra.description = extra.description || "";
 
