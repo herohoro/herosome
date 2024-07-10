@@ -17,6 +17,10 @@ const mdxExists = (filePath: string) => {
   }
 };
 
+const isFileType = (filePath, type) => {
+  return filePath.endsWith(`.${type}`);
+};
+
 export const getArticlesFromFile = () => {
   // Get articles from folder
   const entries = ((ctx: any) => {
@@ -49,8 +53,18 @@ export const getArticlesFromFile = () => {
       // const fileContents = fileModule.default;
       // const filePath = ctx.resolve(key);
       const fileContents = fs.readFileSync(filePath, "utf8");
+      if (!fileContents.startsWith("---")) {
+        console.error(`Invalid YAML front matter in file: ${filePath}`);
+        throw new Error(`Invalid YAML front matter in file: ${filePath}`);
+      }
+
+      // console.log(`File contents: ${fileContents}`); // 追加
 
       const { data: extra, content } = matter(fileContents);
+      console.log(
+        `Matter result - Data: ${JSON.stringify(extra)}, Content: ${content}`
+      ); // 追加
+
       extra.id = "";
       extra.description = extra.description || "";
 

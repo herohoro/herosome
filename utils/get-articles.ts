@@ -35,7 +35,7 @@ export const getArticles = async (): Promise<Article[]> => {
   const articlesArrays = await Promise.all(articlePromises);
   const articles = articlesArrays.flat();
 
-  console.log("Filter前でGET中....", articles);
+  // console.log("Filter前でGET中....", articles);
 
   return articles;
 };
