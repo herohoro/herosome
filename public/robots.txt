@@ -3,8 +3,8 @@ User-agent: *
 Allow: /
 
 # Host
-Host: http://localhost:3300
+Host: https://like.herohoro.com
 
 # Sitemaps
-Sitemap: http://localhost:3300/sitemap.xml
-Sitemap: http://localhost:3300/dynamic-sitemap.xml
+Sitemap: https://like.herohoro.com/sitemap.xml
+Sitemap: https://like.herohoro.com/dynamic-sitemap.xml

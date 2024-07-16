@@ -27,6 +27,9 @@ export const getArticlesFromFile = () => {
     const keys = ctx.keys();
 
     console.log("***** keys", keys);
+    // const values = keys.map(ctx);
+    // console.log("***** values", values);
+
 
     const data = keys
       .filter((key) => key.startsWith("contents/"))
@@ -41,21 +44,23 @@ export const getArticlesFromFile = () => {
         console.log("****** filePath", filePath);
 
         const mdxFileExists = mdxExists(filePath);
-        // console.log(`MDX file exists for ${slug}: ${mdxFileExists}`);
 
-        if (!mdxFileExists) {
-          return null; // Skip processing if MDX file doesn't exist
-        }
+
+        // if (!mdxFileExists) {
+        //   return null; // Skip processing if MDX file doesn't exist
+        // }
 
         const fileContents = fs.readFileSync(filePath, "utf8");
 
-        if (!fileContents.startsWith("---")) {
-          console.error(`Invalid YAML front matter in file: ${filePath}`);
-          throw new Error(`Invalid YAML front matter in file: ${filePath}`);
-        }
+        // if (!fileContents.startsWith("---")) {
+        //   console.error(`Invalid YAML front matter in file: ${filePath}`);
+        //   throw new Error(`Invalid YAML front matter in file: ${filePath}`);
+        // }
 
         const { data: extra, content } = matter(fileContents);
-        console.log("***** content", content);
+        // const { default: content, ...extra } = values[index];
+        // console.log("***** content", content);
+        // console.log("***** extra", extra);
         extra.id = "";
         extra.description = extra.description || "";
 
