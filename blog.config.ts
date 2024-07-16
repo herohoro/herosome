@@ -1,7 +1,7 @@
 import { BlogConfig } from "./types/config";
 
 const blogConfig: BlogConfig = {
-  use: ["mdx","notion"], // mdx or notion
+  use:["mdx","notion"],
   siteLogo: {
     url: "/images/logo.svg",
     width: 201,
@@ -102,12 +102,13 @@ const blogConfig: BlogConfig = {
     },
   ],
   account: {
-    name: "steelydylan",
-    description: "profile here profile here profile here profile here",
-    image: `/images/me.jpeg`,
+    name: "horomi",
+    description: "ブログ大好き。改造も執筆も大好き！！",
+    image: `/images/hapun.png`,
     social: {
-      twitter: "https://twitter.com/steelydylan",
-      github: "https://github.com/steelydylan",
+      twitter: "https://twitter.com/mineral_30",
+      instagram: "https://www.instagram.com/horomi_design",
+      github: "https://github.com/herohoro/herosome",
     },
   },
   writers: [
@@ -131,26 +132,6 @@ const blogConfig: BlogConfig = {
         twitter: "https://twitter.com/mineral_30",
         instagram: "https://www.instagram.com/horomi_design/",
         github: "https://github.com/herohoro",
-      },
-    },
-    {
-      id: "steelydylan",
-      name: "steelydylan",
-      description: "profile here profile here profile here profile here",
-      image: "/images/me.jpeg",
-      social: {
-        twitter: "https://twitter.com/steelydylan",
-        github: "https://github.com/steelydylan",
-      },
-    },
-    {
-      id: "awesome",
-      name: "Mr. AWESOME",
-      description: "profile here profile here profile here profile here",
-      image: "/images/me.jpeg",
-      social: {
-        twitter: "https://twitter.com/steelydylan",
-        github: "https://github.com/steelydylan",
       },
     },
     // {
@@ -201,18 +182,6 @@ const blogConfig: BlogConfig = {
       imagePath: "/images/alaska.jpeg",
       description: "Look at our awesome's sample ",
     },
-    {
-      id: "camp",
-      title: "Camp",
-      imagePath: "/images/camp.jpeg",
-      description: "Look at my awesome camp life",
-    },
-    {
-      id: "travel",
-      title: "Travel",
-      imagePath: "/images/london.jpeg",
-      description: "Look at my awesome travel life",
-    },
   ],
   tags: [
     {
@@ -250,26 +219,6 @@ const blogConfig: BlogConfig = {
     {
       id: "useful",
       title: "便利アイテム",
-    },
-    {
-      id: "london",
-      title: "London",
-    },
-    {
-      id: "boston",
-      title: "Boston",
-    },
-    {
-      id: "paris",
-      title: "Paris",
-    },
-    {
-      id: "fire",
-      title: "Fire",
-    },
-    {
-      id: "sky",
-      title: "Sky",
     },
   ],
 };
