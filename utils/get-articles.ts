@@ -4,17 +4,40 @@ import { getArticlesFromFile, getArticleFromFile } from "./file";
 import { getArticleFromNotion, getDatabase } from "./notion";
 
 export const getArticles = async (): Promise<Article[]> => {
-  if (blogConfig.use === "notion") {
-    return getDatabase(process.env.NOTION_DATABASE_ID as string, {
-      sorts: [
+  const articlePromises = blogConfig.use.map(async (source) => {
+    if (source === "notion") {
+      const notionArticles = await getDatabase(
+        process.env.NOTION_DATABASE_ID as string,
         {
-          property: "rEYP",
-          direction: "descending",
-        },
-      ],
-    });
-  }
-  return getArticlesFromFile();
+          sorts: [
+            {
+              property: "rEYP",
+              direction: "descending",
+            },
+          ],
+        }
+      );
+      // 各記事にソース情報を追加
+      return notionArticles.map((article) => ({
+        ...article,
+        source: "notion",
+      }));
+    } else if (source === "mdx") {
+      const mdxArticles = await getArticlesFromFile();
+      // 各記事にソース情報を追加
+      return mdxArticles.map((article) => ({
+        ...article,
+        source: "mdx",
+      }));
+    }
+  });
+
+  const articlesArrays = await Promise.all(articlePromises);
+  const articles = articlesArrays.flat();
+
+  // console.log("Filter前でGET中....", articles);
+
+  return articles;
 };
 
 export const getFilteredArticles = async ({
@@ -65,8 +88,13 @@ export const getArticle = async (
   article: Article;
   related: Article[];
 }> => {
-  if (blogConfig.use === "notion") {
+  const articles = await getArticles();
+
+  const article = articles.find((article) => article.slug === slug);
+
+  if (article.source === "notion") {
     return getArticleFromNotion(slug);
+  } else if (article.source === "mdx") {
+    return getArticleFromFile(slug);
   }
-  return getArticleFromFile(slug);
 };

@@ -3,7 +3,7 @@ import { Article } from "@/types";
 import { useClientSWR } from "next-zod-router/swr";
 
 export const useArticle = (slug: string, defaultArticle: Article) => {
-  if (blogConfig.use !== "notion") {
+  if (defaultArticle.source === "mdx") {
     return {
       article: defaultArticle,
       isLoading: false,

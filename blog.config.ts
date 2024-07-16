@@ -1,7 +1,7 @@
 import { BlogConfig } from "./types/config";
 
 const blogConfig: BlogConfig = {
-  use: "notion", // mdx or notion
+  use: ["mdx","notion"], // mdx or notion
   siteLogo: {
     url: "/images/logo.svg",
     width: 201,
@@ -102,13 +102,12 @@ const blogConfig: BlogConfig = {
     },
   ],
   account: {
-    name: "はぷん",
-    description: "たのしそうなことがだいすき！無駄こそ正義じゃっ!!!!!",
-    image: `/images/hapun.png`,
+    name: "steelydylan",
+    description: "profile here profile here profile here profile here",
+    image: `/images/me.jpeg`,
     social: {
-      twitter: "https://twitter.com/mineral_30",
-      instagram: "https://www.instagram.com/horomi_design",
-      github: "https://github.com/herohoro/herosome",
+      twitter: "https://twitter.com/steelydylan",
+      github: "https://github.com/steelydylan",
     },
   },
   writers: [
@@ -121,6 +120,37 @@ const blogConfig: BlogConfig = {
         twitter: "https://twitter.com/mineral_30",
         instagram: "https://www.instagram.com/horomi_design/",
         github: "https://github.com/herohoro",
+      },
+    },
+    {
+      id: "horomi",
+      name: "horomi",
+      description: "書く事がとにかく好き。独学が生きがい",
+      image: "/images/profile_500x500.PNG",
+      social: {
+        twitter: "https://twitter.com/mineral_30",
+        instagram: "https://www.instagram.com/horomi_design/",
+        github: "https://github.com/herohoro",
+      },
+    },
+    {
+      id: "steelydylan",
+      name: "steelydylan",
+      description: "profile here profile here profile here profile here",
+      image: "/images/me.jpeg",
+      social: {
+        twitter: "https://twitter.com/steelydylan",
+        github: "https://github.com/steelydylan",
+      },
+    },
+    {
+      id: "awesome",
+      name: "Mr. AWESOME",
+      description: "profile here profile here profile here profile here",
+      image: "/images/me.jpeg",
+      social: {
+        twitter: "https://twitter.com/steelydylan",
+        github: "https://github.com/steelydylan",
       },
     },
     // {
@@ -171,6 +201,18 @@ const blogConfig: BlogConfig = {
       imagePath: "/images/alaska.jpeg",
       description: "Look at our awesome's sample ",
     },
+    {
+      id: "camp",
+      title: "Camp",
+      imagePath: "/images/camp.jpeg",
+      description: "Look at my awesome camp life",
+    },
+    {
+      id: "travel",
+      title: "Travel",
+      imagePath: "/images/london.jpeg",
+      description: "Look at my awesome travel life",
+    },
   ],
   tags: [
     {
@@ -208,6 +250,26 @@ const blogConfig: BlogConfig = {
     {
       id: "useful",
       title: "便利アイテム",
+    },
+    {
+      id: "london",
+      title: "London",
+    },
+    {
+      id: "boston",
+      title: "Boston",
+    },
+    {
+      id: "paris",
+      title: "Paris",
+    },
+    {
+      id: "fire",
+      title: "Fire",
+    },
+    {
+      id: "sky",
+      title: "Sky",
     },
   ],
 };

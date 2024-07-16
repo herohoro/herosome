@@ -106,7 +106,7 @@ interface Widgets {
 }
 
 export interface BlogConfig {
-  use: "notion" | "mdx";
+  use: string[];
   siteLogo: SiteLogo;
   siteUrl: string;
   siteName: string;

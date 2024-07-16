@@ -10,7 +10,7 @@ export const Text = ({
     return null;
   }
   if (sourceText.length === 0) {
-    console.log("sourceTextが空ってことだね");
+    // console.log("sourceTextが空ってことだね");
     return <br />;
   }
   return (
