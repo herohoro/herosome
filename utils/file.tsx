@@ -26,7 +26,7 @@ export const getArticlesFromFile = () => {
   const entries = ((ctx: any) => {
     const keys = ctx.keys();
 
-    console.log("***** keys", keys);
+    // console.log("***** keys", keys);
     // const values = keys.map(ctx);
     // console.log("***** values", values);
 
@@ -38,10 +38,10 @@ export const getArticlesFromFile = () => {
         const filePath = `./${key}`;
         const paths = key.split("/");
         paths.pop();
-        console.log("****** paths", paths);
+        // console.log("****** paths", paths);
         const slug = paths.pop();
 
-        console.log("****** filePath", filePath);
+        // console.log("****** filePath", filePath);
 
         const mdxFileExists = mdxExists(filePath);
 
