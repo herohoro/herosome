@@ -75,6 +75,7 @@ export const getArticlesFromFile = () => {
           slug,
           id: "",
           excerpt: "",
+          source: "mdx"
         };
       });
     return data.filter((item) => item !== null);
@@ -99,16 +100,20 @@ export const getArticlesFromFile = () => {
 
 export const getArticleFromFile = async (slug: string) => {
   const articles = await getArticlesFromFile();
+  console.log("****** FromFile内でのgetArtilces",articles)
   const article = articles.filter((p) => {
     return p.slug === slug;
   });
 
-  const { data } = article[0];
+  const { data,content,source } = article[0];
+  console.log("****** data",data)
+  console.log("****** source",source)
+  console.log("****** content",content)
 
   const { related } = data;
   return {
     article: {
-      content: article[0].content,
+      content: content,
       data,
       permalink: `${blogConfig.siteUrl}/${data.category}/${slug}`,
       slug,
@@ -123,5 +128,6 @@ export const getArticleFromFile = async (slug: string) => {
             return d;
           })
       : [],
+    source,
   };
 };
