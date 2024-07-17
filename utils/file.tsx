@@ -117,6 +117,7 @@ export const getArticleFromFile = async (slug: string) => {
       data,
       permalink: `${blogConfig.siteUrl}/${data.category}/${slug}`,
       slug,
+      source
     } as unknown as Article,
     related: related
       ? articles
@@ -128,6 +129,5 @@ export const getArticleFromFile = async (slug: string) => {
             return d;
           })
       : [],
-    source,
   };
 };
