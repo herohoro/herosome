@@ -23,7 +23,7 @@ export function Content({ content }: { content: string }) {
               margin-bottom: 1.25rem;
               width: 100%;
               height: 140px;
-              border: none;
+              border: var(--c-primary);
             }
 
             :global(.quote) {
