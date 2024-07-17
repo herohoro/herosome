@@ -19,6 +19,8 @@ import { getCategory } from "@/components/utils/get-category";
 import { getTagList } from "@/components/utils/get-tag-list";
 import { useArticle } from "@/hooks/use-article";
 import { NotFound } from "@/components/common/not-found";
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { MDXProvider } from '@mdx-js/react';
 
 type DetailProps = {
   article: Article;
@@ -52,7 +54,15 @@ export default ({ article: defaultArticle, related }: DetailProps) => {
               <Main>
                 <TopicPath items={[{ label: article.data.title }]} />
                 <ContentHeader data={article.data} />
-                <Content content={article.content} />
+
+                {article.source === 'mdx' ? (
+                  <MDXProvider>
+                    <MDXRemote {...(article.content as unknown as MDXRemoteSerializeResult)} />
+                  </MDXProvider>
+                ) : (
+                  <Content content={article.content} />
+                )}
+
                 <TagList
                   category={getCategory(article.data.category)}
                   tags={getTagList(article.data.tags)}
@@ -143,6 +153,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       article,
       related,
       category,
+
     },
   };
 };

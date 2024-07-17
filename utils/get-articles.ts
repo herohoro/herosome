@@ -20,22 +20,18 @@ export const getArticles = async (): Promise<Article[]> => {
       // 各記事にソース情報を追加
       return notionArticles.map((article) => ({
         ...article,
-        source: "notion",
       }));
     } else if (source === "mdx") {
       const mdxArticles = await getArticlesFromFile();
       // 各記事にソース情報を追加
       return mdxArticles.map((article) => ({
         ...article,
-        source: "mdx",
       }));
     }
   });
 
   const articlesArrays = await Promise.all(articlePromises);
   const articles = articlesArrays.flat();
-
-  // console.log("Filter前でGET中....", articles);
 
   return articles;
 };

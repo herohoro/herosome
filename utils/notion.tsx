@@ -103,10 +103,10 @@ export const getDatabase = async (
         slug: item.slug[0],
         id: item.id,
         excerpt: "",
+        source: "notion"
       } as unknown as Article;
     })
   );
-  // console.log(posts);
   return posts;
 };
 
@@ -329,7 +329,6 @@ export const getArticleFromNotion = async (slug: string) => {
     ...post,
     content: renderToString(<div>{notionArticle}</div>),
   } as Article;
-  // console.log("******* FromNotion_return", article);
   return {
     article,
     related: [],
