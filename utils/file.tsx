@@ -1,9 +1,8 @@
 import blogConfig from "@/blog.config";
 import { Article } from "@/types";
-import { renderToString } from "react-dom/server";
 import matter from "gray-matter";
 import fs from "fs";
-import path from "path";
+import { serialize } from 'next-mdx-remote/serialize';
 
 const mdxExists = (filePath: string) => {
   try {
@@ -15,10 +14,6 @@ const mdxExists = (filePath: string) => {
     }
     throw err;
   }
-};
-
-const isFileType = (filePath, type) => {
-  return filePath.endsWith(`.${type}`);
 };
 
 export const getArticlesFromFile = () => {
@@ -42,9 +37,6 @@ export const getArticlesFromFile = () => {
         const slug = paths.pop();
 
         // console.log("****** filePath", filePath);
-
-        const mdxFileExists = mdxExists(filePath);
-
 
         // if (!mdxFileExists) {
         //   return null; // Skip processing if MDX file doesn't exist
@@ -111,9 +103,12 @@ export const getArticleFromFile = async (slug: string) => {
   console.log("****** content",content)
 
   const { related } = data;
+  const mdxSource = await serialize(content);
+  console.log("****** mdxSource",mdxSource)
+
   return {
     article: {
-      content: content,
+      content: mdxSource,
       data,
       permalink: `${blogConfig.siteUrl}/${data.category}/${slug}`,
       slug,
