@@ -4,28 +4,10 @@ import matter from "gray-matter";
 import fs from "fs";
 import { serialize } from 'next-mdx-remote/serialize';
 
-const mdxExists = (filePath: string) => {
-  try {
-    fs.accessSync(filePath, fs.constants.R_OK);
-    return true;
-  } catch (err) {
-    if (err.code === "ENOENT") {
-      return false;
-    }
-    throw err;
-  }
-};
-
 export const getArticlesFromFile = () => {
   // Get articles from folder
   const entries = ((ctx: any) => {
     const keys = ctx.keys();
-
-    // console.log("***** keys", keys);
-    // const values = keys.map(ctx);
-    // console.log("***** values", values);
-
-
     const data = keys
       .filter((key) => key.startsWith("contents/"))
       .map((key, index) => {
@@ -33,26 +15,9 @@ export const getArticlesFromFile = () => {
         const filePath = `./${key}`;
         const paths = key.split("/");
         paths.pop();
-        // console.log("****** paths", paths);
         const slug = paths.pop();
-
-        // console.log("****** filePath", filePath);
-
-        // if (!mdxFileExists) {
-        //   return null; // Skip processing if MDX file doesn't exist
-        // }
-
         const fileContents = fs.readFileSync(filePath, "utf8");
-
-        // if (!fileContents.startsWith("---")) {
-        //   console.error(`Invalid YAML front matter in file: ${filePath}`);
-        //   throw new Error(`Invalid YAML front matter in file: ${filePath}`);
-        // }
-
         const { data: extra, content } = matter(fileContents);
-        // const { default: content, ...extra } = values[index];
-        // console.log("***** content", content);
-        // console.log("***** extra", extra);
         extra.id = "";
         extra.description = extra.description || "";
 
@@ -92,19 +57,12 @@ export const getArticlesFromFile = () => {
 
 export const getArticleFromFile = async (slug: string) => {
   const articles = await getArticlesFromFile();
-  console.log("****** FromFile内でのgetArtilces",articles)
   const article = articles.filter((p) => {
     return p.slug === slug;
   });
-
   const { data,content,source } = article[0];
-  console.log("****** data",data)
-  console.log("****** source",source)
-  console.log("****** content",content)
-
   const { related } = data;
   const mdxSource = await serialize(content);
-  console.log("****** mdxSource",mdxSource)
 
   return {
     article: {

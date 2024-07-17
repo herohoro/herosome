@@ -107,7 +107,6 @@ export const getDatabase = async (
       } as unknown as Article;
     })
   );
-  // console.log(posts);
   return posts;
 };
 
@@ -330,8 +329,6 @@ export const getArticleFromNotion = async (slug: string) => {
     ...post,
     content: renderToString(<div>{notionArticle}</div>),
   } as Article;
-  // console.log("******* FromNotion_return", article);
-  console.log("****** FromNotion内のarticle",article)
   return {
     article,
     related: [],

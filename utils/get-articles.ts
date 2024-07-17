@@ -33,8 +33,6 @@ export const getArticles = async (): Promise<Article[]> => {
   const articlesArrays = await Promise.all(articlePromises);
   const articles = articlesArrays.flat();
 
-  // console.log("Filter前でGET中....", articles);
-
   return articles;
 };
 
@@ -77,7 +75,6 @@ export const getFilteredArticles = async ({
       const { content, ...others } = article;
       return others;
     });
-    console.log("****** getFiltered",results)
   return results;
 };
 
