@@ -143,11 +143,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  console.log("****** StaticProps内params",params)
   const { slug, categoryId } = params;
   const category = blogConfig.categories.find((cat) => cat.id === categoryId);
   const { article, related } = await getArticle(slug as string);
-  console.log("****** StaticProps内getArticle",await getArticle(slug as string))
 
   return {
     revalidate: 60,
