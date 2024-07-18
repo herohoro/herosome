@@ -54,14 +54,7 @@ export default ({ article: defaultArticle, related }: DetailProps) => {
               <Main>
                 <TopicPath items={[{ label: article.data.title }]} />
                 <ContentHeader data={article.data} />
-
-                {article.source === 'mdx' ? (
-                  <MDXProvider>
-                    <MDXRemote {...(article.content as unknown as MDXRemoteSerializeResult)} />
-                  </MDXProvider>
-                ) : (
-                  <Content content={article.content} />
-                )}
+                <Content content={article.content} source={article.source}/>
 
                 <TagList
                   category={getCategory(article.data.category)}

@@ -1,14 +1,31 @@
 import { useHighlight } from "@/hooks/use-highlight";
+import { MDXProvider } from "@mdx-js/react";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
-export function Content({ content }: { content: string }) {
+export function Content({
+  content,
+  source,
+}: {
+  content: string | MDXRemoteSerializeResult;
+  source: string;
+}) {
   const highlightRef = useHighlight();
   return (
     <>
-      <article
-        className="content"
-        ref={highlightRef}
-        dangerouslySetInnerHTML={{ __html: content }}
-      />
+      {source === "mdx" ? (
+        <MDXProvider>
+          <article className="content" ref={highlightRef}>
+            <MDXRemote {...(content as MDXRemoteSerializeResult)} />
+          </article>
+        </MDXProvider>
+      ) : (
+        <article
+          className="content"
+          ref={highlightRef}
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      )}
+
       <style jsx>
         {`
           .content {

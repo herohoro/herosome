@@ -1,0 +1,47 @@
+---
+title: MDXの表示確認
+date: 2024-07-18
+writtenBy: horomi
+category: sample
+tags: ["studying"]
+status: open
+related: []
+thumbnail: /images/not-found.jpeg
+---
+
+
+<div className="quote">
+  <div className="quote-prepend">“</div>
+  <div className="quote-inner">
+    引用する
+
+  </div>
+  <div className="quote-append">”</div>
+</div>
+
+- リスト
+- リスト
+
+1. １番目
+2. ２番目
+
+
+```typescript
+
+case "quote":
+      return (
+        <div className="quote">
+          <div className="quote-prepend">“</div>
+          <div className="quote-inner">
+            <Text text={block.quote.rich_text} />
+          </div>
+          <div className="quote-append">”</div>
+        </div>
+      );
+```
+
+<iframe
+          title="bookmark"
+          src={`/embed/?url=https://github.com/herohoro/herosome/issues/18`}
+          className="embed"
+        />
