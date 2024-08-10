@@ -26,11 +26,12 @@ function PublishdAt({ date }: { date: string }) {
 
 type Props = {
   article: ArticleData;
+  source: string;
   href: string;
   className?: string;
 };
 
-export function ArticleCard({ article, className, href }: Props) {
+export function ArticleCard({ article, source, className, href }: Props) {
   return (
     <div className={className}>
       <div className="article-img-wrap">
@@ -48,7 +49,8 @@ export function ArticleCard({ article, className, href }: Props) {
           tags={getTagList(article.tags)}
           category={getCategory(article.category)}
         />
-        <p>&#x1f408;&#x200d;&#x2b1b;：{getAuthor(article.writtenBy)?.name}</p>
+        {/* <p>&#x1f408;&#x200d;&#x2b1b;：{getAuthor(article.writtenBy)?.name}</p> */}
+        <p>&#x1f408;&#x200d;&#x2b1b;：{source}</p>
         <h2 className="article-title">
           <Link href={href}>{article.title}</Link>
         </h2>
