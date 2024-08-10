@@ -42,6 +42,7 @@ const PageDetail = ({
                 <AritcleColumn key={article.slug} column={2}>
                   <ArticleCard
                     article={article.data}
+                    source={article.source}
                     href={`/${article.data.category}/${article.slug}`}
                   />
                 </AritcleColumn>

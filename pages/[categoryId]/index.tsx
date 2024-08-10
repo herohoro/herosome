@@ -52,6 +52,7 @@ const CategoryIndex: NextPage<Props> = (props) => {
             <AritcleColumn key={article.slug} column={3}>
               <ArticleCard
                 article={article.data}
+                source={article.source}
                 href={`/${article.data.category}/${article.slug}`}
               />
             </AritcleColumn>
