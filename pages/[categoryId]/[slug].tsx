@@ -65,7 +65,7 @@ export default ({ article: defaultArticle, related }: DetailProps) => {
                   title={article.data.title}
                 />
                 {/* <ArticleAuthor writtenBy={article.data.writtenBy} /> */}
-                {related.length > 0 && <Related related={related} />}
+                {related.length > 0 && <Related related={related} source={article.source}/>}
                 {!!blogConfig.articlePage.afterContentAd && (
                   <div
                     className="after-content-ad"
