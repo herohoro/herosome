@@ -13,17 +13,23 @@ import blogConfig from "@/blog.config";
 import { Hero } from "@/components/common/hero";
 import { LinkButton } from "@/components/buttons";
 import { useArticles } from "@/hooks/use-articles";
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { FetchDatabase, FetchDatabaseRes } from 'rotion'
+import { Table } from 'rotion/ui'
+
+
+// type Props = { db: FetchDatabaseRes }
 
 const TopPage = ({
   articles: defaultArticles,
   max,
   current,
-}: {
-  articles: Article[];
-  max: number;
-  current: number;
-}) => {
+  db
+}:
+  InferGetStaticPropsType<typeof getStaticProps>
+) => {
   const { articles } = useArticles({ defaultArticles, current });
+
 
   return (
     <Layout>
@@ -54,8 +60,11 @@ const TopPage = ({
               )}
             </div>
           </ArticleList>
+           <Table keys={['Name', 'Date']} db={db} />
         </main>
+
       </Wrapper>
+
       <style jsx>
         {`
           .main {
@@ -75,6 +84,7 @@ export default TopPage;
 
 export const getStaticProps = async () => {
   const articles = await getArticles();
+  const db = await FetchDatabase({ database_id: process.env.DB_ID as string })
 
   return {
     revalidate: 60,
@@ -84,6 +94,7 @@ export const getStaticProps = async () => {
       articles: await getFilteredArticles({
         current: 0,
       }),
+      db,
     },
   };
 };
