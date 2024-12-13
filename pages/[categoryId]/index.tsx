@@ -101,8 +101,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { categoryId } = params;
   const category = blogConfig.categories.find((c) => c.id === categoryId);
+  // console.log(category)
   const articles = await getArticles();
   const filteredPosts = articles
+    .filter(({ data }) => data.status === "open")
     .filter(({ data }) => {
       return data.category === categoryId;
     })

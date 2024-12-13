@@ -97,6 +97,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const current = parseInt(id as string, 10) - 1;
   const articles = await getArticles();
   const filteredPosts = articles
+    .filter(({ data }) => data.status === "open")
     .filter(({ data }) => {
       return data.category === categoryId;
     })
