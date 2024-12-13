@@ -96,9 +96,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { tagId } = params;
   const tag = blogConfig.tags.find((c) => c.id === tagId);
   const articles = await getArticles();
-  const filteredPosts = articles.filter(({ data }) => {
-    return data.tags.some((t) => t === tag.id);
-  });
+  const filteredPosts = articles
+    .filter(({ data }) => {
+      return data.tags.some((t) => t === tag.id);
+    })
+    .sort((articleA, articleB) => {
+      if (articleA.data.date > articleB.data.date) {
+        return -1;
+      }
+      return 1;
+    });
 
   const slicedPosts = filteredPosts
     .slice(0, blogConfig.article.articlesPerPage)

@@ -102,9 +102,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { categoryId } = params;
   const category = blogConfig.categories.find((c) => c.id === categoryId);
   const articles = await getArticles();
-  const filteredPosts = articles.filter(({ data }) => {
-    return data.category === categoryId;
-  });
+  const filteredPosts = articles
+    .filter(({ data }) => {
+      return data.category === categoryId;
+    })
+    .sort((articleA, articleB) => {
+      if (articleA.data.date > articleB.data.date) {
+        return -1;
+      }
+      return 1;
+    })
 
   const slicedPosts = filteredPosts
     .slice(0, blogConfig.article.articlesPerPage)
@@ -112,12 +119,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       const { content, ...others } = p;
       return others;
     })
-    .sort((articleA, articleB) => {
-      if (articleA.data.date > articleB.data.date) {
-        return -1;
-      }
-      return 1;
-    });
 
   return {
     revalidate: 60,

@@ -22,7 +22,7 @@ export const getArticlesFromFile = () => {
         extra.description = extra.description || "";
 
         if (extra.date instanceof Date) {
-          extra.date = extra.date.toISOString();
+          extra.date = extra.date.toISOString().split("T")[0];
         }
 
         return {
