@@ -1,5 +1,5 @@
 import blogConfig from "@/blog.config";
-import { getArticles, getFilteredArticles } from "@/utils/get-articles";
+import { getFilteredSliceArticles } from "@/utils/get-articles";
 import { ApiHandler, createRouter, validate } from "next-zod-router";
 import { z } from "zod";
 
@@ -40,7 +40,7 @@ const router = createRouter();
 
 router.get(validate(getValidation), async (req, res) => {
   const { current, categoryId, tagId } = req.query;
-  const articles = await getFilteredArticles({
+  const articles = await getFilteredSliceArticles({
     current: parseInt(current),
     categoryId,
     tagId,
