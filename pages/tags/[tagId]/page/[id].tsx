@@ -7,7 +7,7 @@ import {
 } from "@/components/articles";
 import { ArticleCard } from "@/components/articles/card";
 import { Title } from "@/components/texts";
-import { getArticles } from "@/utils/get-articles";
+import { getArticles, getFilteredSliceArticles, getFilteredSortArticles } from "@/utils/get-articles";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Article, Tag } from "@/types";
 import blogConfig from "@/blog.config";
@@ -99,35 +99,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { tagId, id } = params;
   const tag = blogConfig.tags.find((c) => c.id === tagId);
   const current = parseInt(id as string, 10) - 1;
-  const articles = await getArticles();
-  const filteredPosts = articles
-    .filter(({ data }) => data.status === "open")
-    .filter(({ data }) => {
-      return data.tags.some((t) => t === tag.id);
-    })
-    .sort((articleA, articleB) => {
-      if (articleA.data.date > articleB.data.date) {
-        return -1;
-      }
-      return 1;
-    });
+  const articles = await getFilteredSortArticles({ tagId: tag.id })
 
-  const slicedPosts = filteredPosts
-    .slice(
-      current * blogConfig.article.articlesPerPage,
-      current * blogConfig.article.articlesPerPage +
-        blogConfig.article.articlesPerPage
-    )
-    .map((p) => {
-      const { content, ...others } = p;
-      return others;
-    });
-
+  const slicedPosts = await getFilteredSliceArticles({ current, tagId: tag.id})
   return {
     revalidate: 60,
     props: {
       current: current + 1,
-      max: Math.ceil(filteredPosts.length / blogConfig.article.articlesPerPage),
+      max: Math.ceil(articles.length / blogConfig.article.articlesPerPage),
       tag,
       articles: slicedPosts,
     },
