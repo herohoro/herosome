@@ -1,4 +1,4 @@
-import { getArticles, getFilteredArticles } from "@/utils/get-articles";
+import { getFilteredSliceArticles, getFilteredSortArticles } from "@/utils/get-articles";
 import { Layout } from "@/components/layout";
 import { Article } from "@/types";
 import {
@@ -74,14 +74,14 @@ const TopPage = ({
 export default TopPage;
 
 export const getStaticProps = async () => {
-  const articles = await getArticles();
+  const articles = await getFilteredSortArticles({});
 
   return {
     revalidate: 60,
     props: {
       current: 0,
       max: Math.ceil(articles.length / blogConfig.article.articlesPerPage),
-      articles: await getFilteredArticles({
+      articles: await getFilteredSliceArticles({
         current: 0,
       }),
     },

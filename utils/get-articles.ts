@@ -36,15 +36,13 @@ export const getArticles = async (): Promise<Article[]> => {
   return articles;
 };
 
-export const getFilteredArticles = async ({
-  current,
-  categoryId,
-  tagId,
-}: {
-  current: number;
-  categoryId?: string;
-  tagId?: string;
-}) => {
+export  const getFilteredSortArticles = async({
+    categoryId,
+    tagId
+  }: {
+    categoryId?: string;
+    tagId?: string;
+  }) => {
   const articles = await getArticles();
   const results = articles
     .filter(({ data }) => data.status === "open")
@@ -66,6 +64,21 @@ export const getFilteredArticles = async ({
       }
       return 1;
     })
+
+  return results;
+};
+
+// getSlicedArticlesにしたいところ
+export const getFilteredSliceArticles = async ({
+  current, categoryId, tagId
+}: {
+  current: number;
+  categoryId?: string;
+  tagId?: string;
+}) => {
+  const articles = await getFilteredSortArticles({categoryId,
+    tagId});
+  const results = articles
     .slice(
       current * blogConfig.article.articlesPerPage,
       current * blogConfig.article.articlesPerPage +

@@ -1,6 +1,6 @@
 import { GetStaticPaths } from "next";
 import { NextSeo } from "next-seo";
-import { getArticles, getFilteredArticles } from "@/utils/get-articles";
+import { getArticles, getFilteredSliceArticles, getFilteredSortArticles } from "@/utils/get-articles";
 import { Layout } from "@/components/layout";
 import { Article } from "@/types";
 import {
@@ -76,7 +76,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const articles = await getArticles();
+  const articles = await getFilteredSortArticles({})
   const { id } = params;
   const current = parseInt(id, 10) - 1;
   return {
@@ -84,7 +84,7 @@ export const getStaticProps = async ({ params }) => {
     props: {
       current,
       max: Math.ceil(articles.length / blogConfig.article.articlesPerPage),
-      articles: await getFilteredArticles({
+      articles: await getFilteredSliceArticles({
         current,
       }),
     },
