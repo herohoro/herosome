@@ -7,7 +7,7 @@ import {
 } from "@/components/articles";
 import { ArticleCard } from "@/components/articles/card";
 import { Title } from "@/components/texts";
-import { getFilteredSortArticles } from "@/utils/get-articles";
+import { getFilteredSliceArticles, getFilteredSortArticles } from "@/utils/get-articles";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Category, Article } from "@/types";
 import blogConfig from "@/blog.config";
@@ -102,12 +102,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { categoryId } = params;
   const category = blogConfig.categories.find((c) => c.id === categoryId);
   const articles = await getFilteredSortArticles({ categoryId: category.id })
-  const slicedPosts = articles
-    .slice(0, blogConfig.article.articlesPerPage)
-    .map((p) => {
-      const { content, ...others } = p;
-      return others;
-    })
+  const slicedPosts = await getFilteredSliceArticles({ current: 0, categoryId: category.id})
 
   return {
     revalidate: 60,
